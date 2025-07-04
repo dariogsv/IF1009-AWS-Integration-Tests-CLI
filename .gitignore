@@ -1,0 +1,18 @@
+# CloudFormation
+.aws-sam/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python/
+env/
+venv/
+pip-wheel-metadata/
+.tox/
+.coverage
+.pytest_cache/
+
+# Editor
+.vscode/
