@@ -1,0 +1,75 @@
+# template.yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: Microsserviço de Processamento de Pedidos com AWS SAM, Python 3.13, Sort Key, e API Gateway para simulação local.
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: PedidoServiceSam
+    Description: Nome do projeto, usado como prefixo para recursos.
+
+Resources:
+  # --- 1. Tabela DynamoDB com Partition Key (pedidoId) e Sort Key (timestamp) ---
+  PedidosTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${ProjectName}-Pedidos"
+      AttributeDefinitions:
+        - AttributeName: pedidoId
+          AttributeType: S
+        - AttributeName: timestamp
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pedidoId
+          KeyType: HASH
+        - AttributeName: timestamp
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+
+  # --- 2. Função Lambda (com Runtime Python 3.13 e Evento API simplificado para SAM local) ---
+  ProcessaPedidoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src\processa_pedido
+      FunctionName: !Sub "${ProjectName}-ProcessaPedido"
+      Handler: app.lambda_handler
+      Runtime: python3.13
+      MemorySize: 128
+      Timeout: 30
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref PedidosTable
+        - AWSLambdaBasicExecutionRole
+      Environment:
+        Variables:
+          # A Lambda tem o nome da tabela hardcoded, então não precisamos de ENV aqui
+          {}
+      Events: # AQUI ESTÁ A MUDANÇA PARA QUE SAM LOCAL RECONHEÇA A API
+        ProcessaPedidosApi:
+          Type: Api # Tipo SAM simplificado para API Gateway (usa integração proxy por padrão)
+          Properties:
+            Path: /pedidos
+            Method: POST
+            RestApiId: !Ref PedidoApi # Referencia a definição da API Gateway abaixo
+
+  # --- 3. API Gateway (simplificado com AWS::Serverless::Api) ---
+  # Este recurso define a API Gateway em si, e a função Lambda acima se "conecta" a ela
+  PedidoApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub "${ProjectName}-API"
+      StageName: prod
+
+Outputs:
+  ApiGatewayEndpoint:
+    Description: URL do endpoint da API Gateway para processar pedidos (agora via integração proxy para SAM local)
+    Value: !Sub "https://${PedidoApi}.execute-api.${AWS::Region}.amazonaws.com/prod/pedidos"
+    Export:
+      Name: !Sub "${ProjectName}SamApiEndpoint"
+  DynamoDBTableName:
+    Description: Nome da tabela DynamoDB
+    Value: !Ref PedidosTable
+    Export:
+      Name: !Sub "${ProjectName}SamDynamoDBTable"
