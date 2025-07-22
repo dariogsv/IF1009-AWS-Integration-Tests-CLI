@@ -1,17 +1,8 @@
-# template.yaml
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-
-Description: Microsserviço de Processamento de Pedidos com AWS SAM, Python 3.13, Sort Key, e API Gateway para simulação local.
-
-Parameters:
-  ProjectName:
-    Type: String
-    Default: PedidoServiceSam
-    Description: Nome do projeto, usado como prefixo para recursos.
+# ... (Partes existentes do template: AWSTemplateFormatVersion, Transform, Description, Parameters, ProjectName, TestFrameworkName)
 
 Resources:
-  # --- 1. Tabela DynamoDB com Partition Key (pedidoId) e Sort Key (timestamp) ---
+  # --- SERVIÇO DE PEDIDOS ---
+  # PedidosTable, ProcessaPedidoFunction, PedidoApi (mantidos como estavam)
   PedidosTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -28,11 +19,10 @@ Resources:
           KeyType: RANGE
       BillingMode: PAY_PER_REQUEST
 
-  # --- 2. Função Lambda (com Runtime Python 3.13 e Evento API simplificado para SAM local) ---
   ProcessaPedidoFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src\processa_pedido
+      CodeUri: src/processa_pedido
       FunctionName: !Sub "${ProjectName}-ProcessaPedido"
       Handler: app.lambda_handler
       Runtime: python3.13
@@ -43,28 +33,146 @@ Resources:
             TableName: !Ref PedidosTable
         - AWSLambdaBasicExecutionRole
       Environment:
-        Variables:
-          # A Lambda tem o nome da tabela hardcoded, então não precisamos de ENV aqui
-          {}
-      Events: # AQUI ESTÁ A MUDANÇA PARA QUE SAM LOCAL RECONHEÇA A API
+        Variables: {}
+      Events:
         ProcessaPedidosApi:
-          Type: Api # Tipo SAM simplificado para API Gateway (usa integração proxy por padrão)
+          Type: Api
           Properties:
             Path: /pedidos
             Method: POST
-            RestApiId: !Ref PedidoApi # Referencia a definição da API Gateway abaixo
+            RestApiId: !Ref PedidoApi
 
-  # --- 3. API Gateway (simplificado com AWS::Serverless::Api) ---
-  # Este recurso define a API Gateway em si, e a função Lambda acima se "conecta" a ela
   PedidoApi:
     Type: AWS::Serverless::Api
     Properties:
       Name: !Sub "${ProjectName}-API"
       StageName: prod
 
+  # ==========================================================
+  # === RECURSOS DO FRAMEWORK DE TESTES E2E ATÔMICO E GENÉRICO ===
+  # ==========================================================
+
+  # --- Lambdas Atômicas ---
+  HttpCallLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/atomic_test_lambdas/
+      FunctionName: !Sub "${TestFrameworkName}-HttpCall"
+      Handler: http_call.lambda_handler
+      Runtime: python3.9 # Ou 3.13
+      MemorySize: 128
+      Timeout: 25
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - execute-api:Invoke
+            Resource: "arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*" # Invocar qualquer API Gateway
+
+  LambdaInvokeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/atomic_test_lambdas/
+      FunctionName: !Sub "${TestFrameworkName}-LambdaInvoke"
+      Handler: lambda_invoke.lambda_handler
+      Runtime: python3.9
+      MemorySize: 128
+      Timeout: 25
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - lambda:InvokeFunction
+            Resource: "arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:*" # Invocar qualquer Lambda
+
+  DynamoDBInteractLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/atomic_test_lambdas/
+      FunctionName: !Sub "${TestFrameworkName}-DynamoDBInteract"
+      Handler: dynamodb_interact.lambda_handler
+      Runtime: python3.9
+      MemorySize: 128
+      Timeout: 25
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:Query
+              - dynamodb:Scan
+            Resource: "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/*" # Interagir com qualquer tabela DynamoDB
+
+  # --- Lambda Invocadora Central (AtomicLambdaInvoker) ---
+  # Esta Lambda chama as Lambdas atômicas com base no tipo de ação
+  AtomicLambdaInvoker:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/atomic_test_lambdas/
+      FunctionName: !Sub "${TestFrameworkName}-AtomicLambdaInvoker"
+      Handler: atomic_lambda_invoker.lambda_handler
+      Runtime: python3.9
+      MemorySize: 256 # Pode precisar de mais memória
+      Timeout: 60 # Pode ter um timeout maior
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        # Permissões para invocar as Lambdas atômicas
+        - Statement:
+            Effect: Allow
+            Action:
+              - lambda:InvokeFunction
+            Resource:
+              - !GetAtt HttpCallLambda.Arn
+              - !GetAtt LambdaInvokeLambda.Arn
+              - !GetAtt DynamoDBInteractLambda.Arn
+      Environment: # Passa os ARNs das Lambdas atômicas para a Invocadora Central
+        Variables:
+          HTTP_CALL_LAMBDA_ARN: !GetAtt HttpCallLambda.Arn
+          LAMBDA_INVOKE_LAMBDA_ARN: !GetAtt LambdaInvokeLambda.Arn
+          DYNAMODB_INTERACT_LAMBDA_ARN: !GetAtt DynamoDBInteractLambda.Arn
+
+  # --- Role IAM para a Step Functions de Teste ---
+  GenericE2ETestSFNRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${TestFrameworkName}-E2ETestSFNRole"
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: states.${AWS::Region}.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: InvokeAtomicLambdaInvokerPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: lambda:InvokeFunction
+                Resource: !GetAtt AtomicLambdaInvoker.Arn
+
+  # --- Definição da Step Functions de Teste Atômica e Genérica ---
+  AtomicE2ETestStateMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Name: !Sub "${TestFrameworkName}-AtomicE2ETestFlow"
+      DefinitionUri: definition/atomic_e2e_test_flow.asl.json
+      DefinitionSubstitutions:
+        AtomicLambdaInvokerArn: !GetAtt AtomicLambdaInvoker.Arn # Substitui o ARN da invocadora central
+      Role: !GetAtt GenericE2ETestSFNRole.Arn
+      Type: STANDARD
+
 Outputs:
+  # ... (Outputs existentes do serviço de pedidos)
   ApiGatewayEndpoint:
-    Description: URL do endpoint da API Gateway para processar pedidos (agora via integração proxy para SAM local)
+    Description: URL do endpoint da API Gateway para processar pedidos (integração proxy para SAM local)
     Value: !Sub "https://${PedidoApi}.execute-api.${AWS::Region}.amazonaws.com/prod/pedidos"
     Export:
       Name: !Sub "${ProjectName}SamApiEndpoint"
@@ -73,3 +181,10 @@ Outputs:
     Value: !Ref PedidosTable
     Export:
       Name: !Sub "${ProjectName}SamDynamoDBTable"
+
+  # --- Novos Outputs para o Framework de Testes Genérico Atômico ---
+  AtomicE2ETestStateMachineArn:
+    Description: ARN da Step Functions para testes E2E Atômicos e Genéricos
+    Value: !Ref AtomicE2ETestStateMachine
+    Export:
+      Name: !Sub "${TestFrameworkName}AtomicE2ETestStateMachineArn"
