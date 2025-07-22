@@ -149,11 +149,6 @@ python cli.py logs <execution_arn>
 python cli.py list-scenarios
 ```
 
-### CLI Output Example
-
-![CLI Output Example](docs/images/screenshots/cli-output-placeholder.svg)
-*Example output from running a test scenario with the CLI*
-
 ### Command Options
 
 ```mermaid
@@ -401,25 +396,6 @@ For questions or issues, please:
 2. Review CloudWatch logs for detailed error information
 3. Create an issue in the repository
 4. Contact the development team
-
-## Additional Resources
-
-### Documentation
-- 📚 [Getting Started Guide](docs/GETTING_STARTED.md) - Step-by-step setup and first test
-- 🏗️ [Architecture Documentation](docs/ARCHITECTURE.md) - Detailed technical architecture
-- 📖 [API Reference](docs/API_REFERENCE.md) - Complete CLI and JSON schema reference
-- 🧪 [Test Scenarios Guide](docs/TEST_SCENARIOS.md) - Creating and managing test scenarios
-- 🖼️ [Images Guide](docs/IMAGES_GUIDE.md) - Adding visual documentation
-
-### Visual Assets
-- Architecture diagrams: `docs/images/architecture/`
-- CLI screenshots: `docs/images/screenshots/`
-- Example configurations: `docs/images/examples/`
-
-### Quick Links
-- [AWS Step Functions Console](https://console.aws.amazon.com/states/home)
-- [CloudWatch Logs](https://console.aws.amazon.com/cloudwatch/home#logsV2:)
-- [AWS SAM Documentation](https://docs.aws.amazon.com/serverless-application-model/)
 
 ---
 
