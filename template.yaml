@@ -1,8 +1,29 @@
-# ... (Partes existentes do template: AWSTemplateFormatVersion, Transform, Description, Parameters, ProjectName, TestFrameworkName)
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: Microsserviço de Processamento de Pedidos com AWS SAM e Step Functions para Testes E2E.
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: PedidoServiceSam
+    Description: Nome do projeto, usado como prefixo para recursos.
+  TestFrameworkName:
+    Type: String
+    Default: GenericE2ETestFramework
+    Description: Nome do framework de testes genérico, usado como prefixo para seus recursos.
+  
+Globals:
+  Function:
+    Runtime: python3.13
+    Handler: app.lambda_handler
+    Architectures:
+    - arm64
+    MemorySize: 1024
+    Timeout: 30
 
 Resources:
-  # --- SERVIÇO DE PEDIDOS ---
-  # PedidosTable, ProcessaPedidoFunction, PedidoApi (mantidos como estavam)
+  # --- Tabela DynamoDB para o SERVIÇO DE PEDIDOS ---
   PedidosTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -19,21 +40,19 @@ Resources:
           KeyType: RANGE
       BillingMode: PAY_PER_REQUEST
 
+  # --- Função Lambda do SERVIÇO DE PEDIDOS ---
   ProcessaPedidoFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/processa_pedido
+      CodeUri: src/processa_pedido # Caminho do código
       FunctionName: !Sub "${ProjectName}-ProcessaPedido"
-      Handler: app.lambda_handler
-      Runtime: python3.13
-      MemorySize: 128
-      Timeout: 30
       Policies:
-        - DynamoDBWritePolicy:
+        - DynamoDBCrudPolicy: # Alterado para Crud para permitir leitura e escrita
             TableName: !Ref PedidosTable
         - AWSLambdaBasicExecutionRole
       Environment:
-        Variables: {}
+        Variables:
+          PEDIDOS_TABLE_NAME: !Ref PedidosTable
       Events:
         ProcessaPedidosApi:
           Type: Api
@@ -42,135 +61,64 @@ Resources:
             Method: POST
             RestApiId: !Ref PedidoApi
 
+  # --- API Gateway do SERVIÇO DE PEDIDOS ---
   PedidoApi:
     Type: AWS::Serverless::Api
     Properties:
       Name: !Sub "${ProjectName}-API"
       StageName: prod
 
-  # ==========================================================
-  # === RECURSOS DO FRAMEWORK DE TESTES E2E ATÔMICO E GENÉRICO ===
-  # ==========================================================
-
-  # --- Lambdas Atômicas ---
-  HttpCallLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/atomic_test_lambdas/
-      FunctionName: !Sub "${TestFrameworkName}-HttpCall"
-      Handler: http_call.lambda_handler
-      Runtime: python3.9 # Ou 3.13
-      MemorySize: 128
-      Timeout: 25
-      Policies:
-        - AWSLambdaBasicExecutionRole
-        - Statement:
-            Effect: Allow
-            Action:
-              - execute-api:Invoke
-            Resource: "arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*" # Invocar qualquer API Gateway
-
-  LambdaInvokeLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/atomic_test_lambdas/
-      FunctionName: !Sub "${TestFrameworkName}-LambdaInvoke"
-      Handler: lambda_invoke.lambda_handler
-      Runtime: python3.9
-      MemorySize: 128
-      Timeout: 25
-      Policies:
-        - AWSLambdaBasicExecutionRole
-        - Statement:
-            Effect: Allow
-            Action:
-              - lambda:InvokeFunction
-            Resource: "arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:*" # Invocar qualquer Lambda
-
-  DynamoDBInteractLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/atomic_test_lambdas/
-      FunctionName: !Sub "${TestFrameworkName}-DynamoDBInteract"
-      Handler: dynamodb_interact.lambda_handler
-      Runtime: python3.9
-      MemorySize: 128
-      Timeout: 25
-      Policies:
-        - AWSLambdaBasicExecutionRole
-        - Statement:
-            Effect: Allow
-            Action:
-              - dynamodb:GetItem
-              - dynamodb:PutItem
-              - dynamodb:UpdateItem
-              - dynamodb:DeleteItem
-              - dynamodb:Query
-              - dynamodb:Scan
-            Resource: "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/*" # Interagir com qualquer tabela DynamoDB
-
-  # --- Lambda Invocadora Central (AtomicLambdaInvoker) ---
-  # Esta Lambda chama as Lambdas atômicas com base no tipo de ação
-  AtomicLambdaInvoker:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/atomic_test_lambdas/
-      FunctionName: !Sub "${TestFrameworkName}-AtomicLambdaInvoker"
-      Handler: atomic_lambda_invoker.lambda_handler
-      Runtime: python3.9
-      MemorySize: 256 # Pode precisar de mais memória
-      Timeout: 60 # Pode ter um timeout maior
-      Policies:
-        - AWSLambdaBasicExecutionRole
-        # Permissões para invocar as Lambdas atômicas
-        - Statement:
-            Effect: Allow
-            Action:
-              - lambda:InvokeFunction
-            Resource:
-              - !GetAtt HttpCallLambda.Arn
-              - !GetAtt LambdaInvokeLambda.Arn
-              - !GetAtt DynamoDBInteractLambda.Arn
-      Environment: # Passa os ARNs das Lambdas atômicas para a Invocadora Central
-        Variables:
-          HTTP_CALL_LAMBDA_ARN: !GetAtt HttpCallLambda.Arn
-          LAMBDA_INVOKE_LAMBDA_ARN: !GetAtt LambdaInvokeLambda.Arn
-          DYNAMODB_INTERACT_LAMBDA_ARN: !GetAtt DynamoDBInteractLambda.Arn
-
-  # --- Role IAM para a Step Functions de Teste ---
-  GenericE2ETestSFNRole:
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: !Sub "${TestFrameworkName}-E2ETestSFNRole"
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: states.${AWS::Region}.amazonaws.com
-            Action: sts:AssumeRole
-      Policies:
-        - PolicyName: InvokeAtomicLambdaInvokerPolicy
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action: lambda:InvokeFunction
-                Resource: !GetAtt AtomicLambdaInvoker.Arn
-
-  # --- Definição da Step Functions de Teste Atômica e Genérica ---
-  AtomicE2ETestStateMachine:
+  # --- Step Functions para o TESTE E2E DO SERVIÇO DE PEDIDOS ---
+  OrderProcessingE2ETest:
     Type: AWS::Serverless::StateMachine
     Properties:
-      Name: !Sub "${TestFrameworkName}-AtomicE2ETestFlow"
-      DefinitionUri: definition/atomic_e2e_test_flow.asl.json
+      Name: !Sub "${ProjectName}-OrderE2ETest"
+      # Aponta para o arquivo de definição ASL externo.
+      DefinitionUri: tests/order_e2e_test.asl.json
+      # Substitui as variáveis no arquivo ASL pelos valores dos recursos.
       DefinitionSubstitutions:
-        AtomicLambdaInvokerArn: !GetAtt AtomicLambdaInvoker.Arn # Substitui o ARN da invocadora central
-      Role: !GetAtt GenericE2ETestSFNRole.Arn
-      Type: STANDARD
+        OrdersTableName: !Ref PedidosTable
+        ApiEndpoint: !Sub "https://${PedidoApi}.execute-api.${AWS::Region}.amazonaws.com"
+        ApiEndpointUrl: !Sub "https://${PedidoApi}.execute-api.${AWS::Region}.amazonaws.com/prod/pedidos"
+        ConnectionArn: !GetAtt MyApiConnection.Arn
+      # Define as permissões que a máquina de estados precisa para executar.
+      Policies:
+        # Permissão para criar, ler e deletar itens na tabela de pedidos.
+        - DynamoDBCrudPolicy:
+            TableName: !Ref PedidosTable
+        # Permissões para usar a Conexão do EventBridge e ler o segredo associado.
+        - Statement:
+          - Effect: Allow
+            Action: events:RetrieveConnectionCredentials
+            Resource: !GetAtt MyApiConnection.Arn
+          - Effect: Allow
+            Action: states:InvokeHTTPEndpoint
+            Resource: "*"
+          - Effect: Allow
+            Action: 
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            # NOTA: Em produção, é recomendado restringir este recurso ao ARN específico do segredo.
+            # Para este ambiente de teste, "*" é suficiente.
+            Resource: "*"
+    DependsOn:
+      - ProcessaPedidoFunction
+      - PedidoApi
+      - PedidosTable
+
+  MyApiConnection:
+    Type: AWS::Events::Connection
+    Properties:
+      AuthorizationType: API_KEY
+      AuthParameters:
+        ApiKeyAuthParameters:
+          ApiKeyName: "placeholder-key-name"
+          ApiKeyValue: "placeholder-key-value"
+      Description: "Connection for my API without authentication"
+      Name: !Sub "${ProjectName}-api-connection"
 
 Outputs:
-  # ... (Outputs existentes do serviço de pedidos)
+  # --- Outputs existentes do serviço de pedidos ---
   ApiGatewayEndpoint:
     Description: URL do endpoint da API Gateway para processar pedidos (integração proxy para SAM local)
     Value: !Sub "https://${PedidoApi}.execute-api.${AWS::Region}.amazonaws.com/prod/pedidos"
@@ -182,9 +130,9 @@ Outputs:
     Export:
       Name: !Sub "${ProjectName}SamDynamoDBTable"
 
-  # --- Novos Outputs para o Framework de Testes Genérico Atômico ---
-  AtomicE2ETestStateMachineArn:
-    Description: ARN da Step Functions para testes E2E Atômicos e Genéricos
-    Value: !Ref AtomicE2ETestStateMachine
+  # --- Output para a nova State Machine de Teste E2E Específica ---
+  OrderProcessingE2ETestArn:
+    Description: ARN da Step Functions para o teste E2E de processamento de pedidos
+    Value: !Ref OrderProcessingE2ETest
     Export:
-      Name: !Sub "${TestFrameworkName}AtomicE2ETestStateMachineArn"
+      Name: !Sub "${ProjectName}OrderE2ETestArn"

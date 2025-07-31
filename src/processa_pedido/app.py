@@ -1,25 +1,23 @@
 # src/processa_pedido/app.py
 import json
-import os
 import uuid
+import os
 import boto3
 from datetime import datetime
 
-DYNAMODB_TABLE_NAME = "PedidoServiceSam-Pedidos" # Confirme que o nome aqui corresponde ao template!
+DYNAMODB_TABLE_NAME = os.environ.get("PEDIDOS_TABLE_NAME")
 
 dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table(DYNAMODB_TABLE_NAME)
 
 def lambda_handler(event, context):
     """
     Função Lambda para processar um pedido.
-    Recebe o pedido via API Gateway (agora via proxy novamente para simulação local)
-    e salva o status em uma tabela DynamoDB.
+    Recebe o pedido via API Gateway no formato http e salva em uma tabela DynamoDB.
     """
-    table = dynamodb.Table(DYNAMODB_TABLE_NAME)
+
 
     try:
-        # AQUI É A MUDANÇA: Voltamos a acessar o corpo da requisição via event['body']
-        # porque a integração Type: Api do SAM usa integração proxy por padrão para simulação local.
         body = json.loads(event['body'])
         
         pedido_id = str(uuid.uuid4())

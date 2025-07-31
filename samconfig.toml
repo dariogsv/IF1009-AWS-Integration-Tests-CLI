@@ -6,5 +6,5 @@ s3_prefix = "PedidoServiceSam"
 region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
-parameter_overrides = "ProjectName=\"PedidoServiceSam\""
+parameter_overrides = "ProjectName=\"PedidoServiceSam\" TestFrameworkName=\"GenericE2ETestFramework\""
 image_repositories = []
