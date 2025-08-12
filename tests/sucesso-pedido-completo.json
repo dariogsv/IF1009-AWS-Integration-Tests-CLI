@@ -1,0 +1,24 @@
+{
+  "description": "Cenário de sucesso com um pedido completo e múltiplos itens.",
+  "input": {
+    "items": {
+      "prod-001": {
+        "nome": "Teclado Mecânico RGB",
+        "preco_unitario": 350.50,
+        "quantidade": 1
+      },
+      "prod-002": {
+        "nome": "Mouse Gamer Sem Fio",
+        "preco_unitario": 189.99,
+        "quantidade": 2
+      }
+    },
+    "clienteId": "cliente-b8a2-441f-9921",
+    "enderecoEntrega": "Rua dos Testes, 123, Bairro da Integração, Cidade Lambda, 50740-560",
+    "paymentMethod": "CARTAO_CREDITO"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  }
+}
