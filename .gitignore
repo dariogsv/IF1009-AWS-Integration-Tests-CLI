@@ -16,3 +16,5 @@ pip-wheel-metadata/
 
 # Ignora pastas de dependências de layers
 layers/*/python/
+
+config.yaml

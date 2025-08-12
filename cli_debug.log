@@ -1694,3 +1694,3206 @@ Recebido: {
 [2025-08-12 16:09:13] [INFO] [32mTestes Passaram: 0[0m
 [2025-08-12 16:09:13] [INFO] [31mTestes Falharam: 7[0m
 [2025-08-12 16:09:13] [INFO] [36m[1m--------------------------[0m
+[2025-08-12 16:19:10] [INFO] Suítes e cenários de teste disponíveis:
+[2025-08-12 16:25:25] [ERROR] Erro: O modo interativo requer a biblioteca 'questionary'.
+[2025-08-12 16:25:25] [ERROR] Instale com: pip install questionary
+[2025-08-12 16:26:23] [WARNING] Aviso: Nenhuma pasta 'inputs' encontrada para a suíte 'PedidoServiceSam-OrderE2ETest'.
+[2025-08-12 16:28:07] [INFO] 
+Operação cancelada pelo usuário.
+[2025-08-12 16:28:23] [INFO] 
+Operação cancelada pelo usuário.
+[2025-08-12 16:29:27] [INFO] 
+Operação cancelada pelo usuário.
+[2025-08-12 16:29:40] [INFO] 
+Operação cancelada pelo usuário.
+[2025-08-12 16:32:15] [INFO] Nenhuma suíte selecionada. Encerrando.
+[2025-08-12 16:32:19] [WARNING] Aviso: Nenhuma pasta 'inputs' encontrada para a suíte 'PedidoServiceSam-OrderE2ETest'.
+[2025-08-12 16:32:43] [INFO] [33m[1m
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---[0m
+[2025-08-12 16:32:43] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:32:44] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:32:44] [INFO] [1mExecutando cenário: cenário_de_borda_com_'enderecoentrega'_vazio[0m
+[2025-08-12 16:32:44] [INFO] ID da Execução do Teste: e21b6026-01d0-4f90-97d6-9e56113faf88
+[2025-08-12 16:32:44] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-e21b6026-20250812163244
+[2025-08-12 16:32:44] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-e21b6026-20250812163244
+[2025-08-12 16:32:44] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:32:47] [INFO] [36m
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---[0m
+[2025-08-12 16:32:47] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-e21b6026-20250812163244
+[2025-08-12 16:32:47] [INFO] [31mStatus AWS: FAILED[0m
+[2025-08-12 16:32:47] [INFO] Causa: An error occurred while executing the state 'ExecuteApiEndpoint' (entered at the event id #2). The JSONPath '$.input' specified for the field 'RequestBody.$' could not be found in the input '{"items": {"prod-009": {"nome": "Produto com Endere\u00e7o Vazio", "preco_unitario": 1000, "quantidade": 1}}, "clienteId": "cliente-j1k2-55d6-e7f8", "enderecoEntrega": "", "paymentMethod": "PIX", "testRunId": "e21b6026-01d0-4f90-97d6-9e56113faf88"}'
+[2025-08-12 16:32:47] [INFO] Erro: States.Runtime
+[2025-08-12 16:32:47] [INFO] [36m--- Validação do Cenário ---[0m
+[2025-08-12 16:32:47] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:32:47] [INFO] Erro: States.Runtime, Causa: An error occurred while executing the state 'ExecuteApiEndpoint' (entered at the event id #2). The JSONPath '$.input' specified for the field 'RequestBody.$' could not be found in the input '{"items": {"prod-009": {"nome": "Produto com Endere\u00e7o Vazio", "preco_unitario": 1000, "quantidade": 1}}, "clienteId": "cliente-j1k2-55d6-e7f8", "enderecoEntrega": "", "paymentMethod": "PIX", "testRunId": "e21b6026-01d0-4f90-97d6-9e56113faf88"}'
+[2025-08-12 16:32:47] [INFO] [31mResultado Final: FALHOU ❌[0m
+[36m-----------------------------------------
+[0m
+[2025-08-12 16:32:47] [INFO] [36m[1m
+--- Resumo da Execução ---[0m
+[2025-08-12 16:32:47] [INFO] [32mTestes Passaram: 0[0m
+[2025-08-12 16:32:47] [INFO] [31mTestes Falharam: 1[0m
+[2025-08-12 16:32:47] [INFO] [36m[1m--------------------------
+[0m
+[2025-08-12 16:34:33] [INFO] [33m[1m
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---[0m
+[2025-08-12 16:34:33] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:34:33] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:34:33] [INFO] [1mExecutando cenário: cenário_de_borda_com_'enderecoentrega'_vazio[0m
+[2025-08-12 16:34:33] [INFO] ID da Execução do Teste: 429c992e-c595-41f4-a0e6-a63e5870ced7
+[2025-08-12 16:34:33] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-429c992e-20250812163433
+[2025-08-12 16:34:33] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-429c992e-20250812163433
+[2025-08-12 16:34:33] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:34:37] [INFO] [36m
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---[0m
+[2025-08-12 16:34:37] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-429c992e-20250812163433
+[2025-08-12 16:34:37] [INFO] [32mStatus AWS: SUCCEEDED[0m
+[2025-08-12 16:34:37] [INFO] Output da Step Functions: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "429c992e-c595-41f4-a0e6-a63e5870ced7",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:34:37 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNST9H9voAMEQZA="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b974c-2d186bc1309011952bef354f;Parent=782625cd77ce54b5;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "58aea44c-4ae4-461b-b0d0-83f906318064"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "LxK5G-4UcTm1f2_Swg7gvX60qZ_daSvlegHVHde_4qy5AxDwGyFv8A=="
+      ],
+      "via": [
+        "1.1 d4b41c13595dcfd327649d8cdea72ce8.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "8b723b96-d6d6-4aa1-b614-66319b06d0fd",
+      "timestamp": "2025-08-12T19:34:37.140742",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "8b723b96-d6d6-4aa1-b614-66319b06d0fd"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:34:37.140742"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "M2FM88O90GA8SKQG61NS7V9LL3VV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "1354398103"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:34:37 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:34:37 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "1354398103",
+        "x-amzn-RequestId": "M2FM88O90GA8SKQG61NS7V9LL3VV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "M2FM88O90GA8SKQG61NS7V9LL3VV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:34:37] [INFO] [36m--- Validação do Cenário ---[0m
+[2025-08-12 16:34:37] [INFO] Validação Falhou: Output real não corresponde ao output esperado.
+Esperado: {
+  "statusCode": 200,
+  "statusInDb": "PENDENTE"
+}
+Recebido: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "429c992e-c595-41f4-a0e6-a63e5870ced7",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:34:37 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNST9H9voAMEQZA="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b974c-2d186bc1309011952bef354f;Parent=782625cd77ce54b5;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "58aea44c-4ae4-461b-b0d0-83f906318064"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "LxK5G-4UcTm1f2_Swg7gvX60qZ_daSvlegHVHde_4qy5AxDwGyFv8A=="
+      ],
+      "via": [
+        "1.1 d4b41c13595dcfd327649d8cdea72ce8.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "8b723b96-d6d6-4aa1-b614-66319b06d0fd",
+      "timestamp": "2025-08-12T19:34:37.140742",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "8b723b96-d6d6-4aa1-b614-66319b06d0fd"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:34:37.140742"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "M2FM88O90GA8SKQG61NS7V9LL3VV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "1354398103"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:34:37 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:34:37 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "1354398103",
+        "x-amzn-RequestId": "M2FM88O90GA8SKQG61NS7V9LL3VV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "M2FM88O90GA8SKQG61NS7V9LL3VV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:34:37] [INFO] [31mResultado Final: FALHOU ❌[0m
+[36m-----------------------------------------
+[0m
+[2025-08-12 16:34:37] [INFO] [36m[1m
+--- Resumo da Execução ---[0m
+[2025-08-12 16:34:37] [INFO] [32mTestes Passaram: 0[0m
+[2025-08-12 16:34:37] [INFO] [31mTestes Falharam: 1[0m
+[2025-08-12 16:34:37] [INFO] [36m[1m--------------------------
+[0m
+[2025-08-12 16:37:43] [INFO] [33m[1m
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---[0m
+[2025-08-12 16:37:43] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:37:44] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:37:44] [INFO] [1mExecutando cenário: cenário_de_borda_com_'enderecoentrega'_vazio[0m
+[2025-08-12 16:37:44] [INFO] ID da Execução do Teste: b4d3831e-62bb-45f6-b5bd-fc660d728388
+[2025-08-12 16:37:44] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-b4d3831e-20250812163744
+[2025-08-12 16:37:44] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-b4d3831e-20250812163744
+[2025-08-12 16:37:44] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:37:47] [INFO] [36m
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---[0m
+[2025-08-12 16:37:47] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-b4d3831e-20250812163744
+[2025-08-12 16:37:47] [INFO] [32mStatus AWS: SUCCEEDED[0m
+[2025-08-12 16:37:47] [INFO] Output da Step Functions: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:37:46 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNSxtGWHoAMEsMg="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b980a-79a5f6706393afe70feda589;Parent=1fa188c99bc365de;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "3a49537d-b4f8-44dd-8a7d-3ba26a85459a"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "g7myE4cypYNpnA0_e0C9f-rV3J5fOUeQSQkUJu0yK2cJUHntGZ8ZoA=="
+      ],
+      "via": [
+        "1.1 199fd61d7551d8868317c5b53cc7d24c.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "5c97b222-fe90-4349-aa85-4161c3abc70c",
+      "timestamp": "2025-08-12T19:37:46.613212",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "5c97b222-fe90-4349-aa85-4161c3abc70c"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:37:46.613212"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "F4VKPJMBHI8UE5QL9B25RCAVEBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "4027646175"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:37:46 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:37:46 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "4027646175",
+        "x-amzn-RequestId": "F4VKPJMBHI8UE5QL9B25RCAVEBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "F4VKPJMBHI8UE5QL9B25RCAVEBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:37:47] [INFO] [36m--- Validação do Cenário ---[0m
+[2025-08-12 16:37:47] [INFO] Validação Falhou: Output real não corresponde ao output esperado.
+Esperado: {
+  "statusCode": 200,
+  "statusInDb": "PENDENTE"
+}
+Recebido: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:37:46 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNSxtGWHoAMEsMg="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b980a-79a5f6706393afe70feda589;Parent=1fa188c99bc365de;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "3a49537d-b4f8-44dd-8a7d-3ba26a85459a"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "g7myE4cypYNpnA0_e0C9f-rV3J5fOUeQSQkUJu0yK2cJUHntGZ8ZoA=="
+      ],
+      "via": [
+        "1.1 199fd61d7551d8868317c5b53cc7d24c.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "5c97b222-fe90-4349-aa85-4161c3abc70c",
+      "timestamp": "2025-08-12T19:37:46.613212",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "5c97b222-fe90-4349-aa85-4161c3abc70c"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:37:46.613212"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "F4VKPJMBHI8UE5QL9B25RCAVEBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "4027646175"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:37:46 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:37:46 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "4027646175",
+        "x-amzn-RequestId": "F4VKPJMBHI8UE5QL9B25RCAVEBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "F4VKPJMBHI8UE5QL9B25RCAVEBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:37:47] [INFO] [31mResultado Final: FALHOU ❌[0m
+[36m-----------------------------------------
+[0m
+[2025-08-12 16:37:47] [INFO] [36m[1m
+--- Resumo da Execução ---[0m
+[2025-08-12 16:37:47] [INFO] [32mTestes Passaram: 0[0m
+[2025-08-12 16:37:47] [INFO] [31mTestes Falharam: 1[0m
+[2025-08-12 16:37:47] [INFO] [36m[1m--------------------------
+[0m
+[2025-08-12 16:44:55] [INFO] [33m[1m
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---[0m
+[2025-08-12 16:44:55] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:44:56] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:44:56] [INFO] [1mExecutando cenário: cenário_de_borda_com_'enderecoentrega'_vazio[0m
+[2025-08-12 16:44:56] [INFO] ID da Execução do Teste: d773b3ff-b76e-41ea-8166-eeca4a633861
+[2025-08-12 16:44:56] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-d773b3ff-20250812164456
+[2025-08-12 16:44:56] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-d773b3ff-20250812164456
+[2025-08-12 16:44:56] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:44:59] [INFO] [36m
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---[0m
+[2025-08-12 16:44:59] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-d773b3ff-20250812164456
+[2025-08-12 16:44:59] [INFO] [32mStatus AWS: SUCCEEDED[0m
+[2025-08-12 16:44:59] [INFO] Output da Step Functions: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "d773b3ff-b76e-41ea-8166-eeca4a633861",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:45:00 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNT1RFC6IAMEm2Q="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b99ba-3aec0f673d1b7bfe7fe2b7e1;Parent=0987c5e248222013;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "38628fbc-07f8-49ad-8dd6-ab17c27b9596"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "TveonEX5HJu2ZzR3K0CVZkY5XvOEwalpiBKunZbGWCg0MlADueWZUQ=="
+      ],
+      "via": [
+        "1.1 38ecebcaa39c8742da2b6336935bb446.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "47741920-54a3-42e5-a86a-ac90ec79c449",
+      "timestamp": "2025-08-12T19:45:00.430218",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "47741920-54a3-42e5-a86a-ac90ec79c449"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:45:00.430218"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "JD6LSFT8HEST2G9SRUEEJHJS33VV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "4021456866"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:45:00 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:45:00 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "4021456866",
+        "x-amzn-RequestId": "JD6LSFT8HEST2G9SRUEEJHJS33VV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "JD6LSFT8HEST2G9SRUEEJHJS33VV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:44:59] [INFO] [36m--- Validação do Cenário ---[0m
+[2025-08-12 16:44:59] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:44:59] [INFO] [32mResultado Final: PASSOU ✅[0m
+[36m-----------------------------------------
+[0m
+[2025-08-12 16:44:59] [INFO] [36m[1m
+--- Resumo da Execução ---[0m
+[2025-08-12 16:44:59] [INFO] [32mTestes Passaram: 1[0m
+[2025-08-12 16:44:59] [INFO] [31mTestes Falharam: 0[0m
+[2025-08-12 16:44:59] [INFO] [36m[1m--------------------------
+[0m
+[2025-08-12 16:47:33] [INFO] 
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---
+[2025-08-12 16:47:33] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:47:34] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:47:34] [INFO] Executando cenário: cenário_de_borda_com_'enderecoentrega'_vazio
+[2025-08-12 16:47:34] [INFO] ID da Execução do Teste: 93f51fb5-2da2-411c-8bf0-2a6228a2d636
+[2025-08-12 16:47:34] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-93f51fb5-20250812164734
+[2025-08-12 16:47:34] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-93f51fb5-20250812164734
+[2025-08-12 16:47:34] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:47:38] [INFO] 
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---
+[2025-08-12 16:47:38] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-93f51fb5-20250812164734
+[2025-08-12 16:47:38] [DEBUG] Output completo da SFN: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "93f51fb5-2da2-411c-8bf0-2a6228a2d636",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:47:37 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNUN-FmfoAMESUA="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9a59-63e4413b49fc053311927c80;Parent=2b52d0930a1f170e;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "e3f8dc2e-56ef-4626-9e35-a0f0bf39b7e3"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "YOu5lNpfr2q_KR7lL4IqFNdlvxtynVaOo4eELPgpUPCk7Y_gc3siAA=="
+      ],
+      "via": [
+        "1.1 10a9e9969f05a75cc05e6f70b8499f7e.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "0f5a83c0-20e6-46f1-a545-ca9ca8645fd1",
+      "timestamp": "2025-08-12T19:47:37.051875",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "0f5a83c0-20e6-46f1-a545-ca9ca8645fd1"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:47:37.051875"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "8R44PRJ42JJJ5Q7FTVP96OC2UNVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "1151001906"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:47:37 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:47:37 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "1151001906",
+        "x-amzn-RequestId": "8R44PRJ42JJJ5Q7FTVP96OC2UNVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "8R44PRJ42JJJ5Q7FTVP96OC2UNVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:47:38] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:47:38] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:47:38] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:47:38] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:47:38] [INFO] 
+--- Resumo da Execução ---
+[2025-08-12 16:47:38] [INFO] Testes Passaram: 1
+[2025-08-12 16:47:38] [INFO] Testes Falharam: 0
+[2025-08-12 16:47:38] [INFO] --------------------------
+
+[2025-08-12 16:47:49] [INFO] 
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---
+[2025-08-12 16:47:49] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:47:49] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:47:49] [INFO] Executando cenário: borda-pedido-sem-itens
+[2025-08-12 16:47:50] [INFO] ID da Execução do Teste: b7025986-2efd-452c-8114-df662d44dd97
+[2025-08-12 16:47:50] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-b7025986-20250812164749
+[2025-08-12 16:47:50] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-b7025986-20250812164749
+[2025-08-12 16:47:50] [INFO] Aguardando a conclusão do teste 'borda-pedido-sem-itens'...
+[2025-08-12 16:47:53] [INFO] 
+--- Resultados do Teste: borda-pedido-sem-itens ---
+[2025-08-12 16:47:53] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-b7025986-20250812164749
+[2025-08-12 16:47:53] [DEBUG] Output completo da SFN: {
+  "description": "Cen\u00e1rio de borda com um dicion\u00e1rio de itens vazio. A valida\u00e7\u00e3o atual permite isso.",
+  "input": {
+    "items": {},
+    "clienteId": "cliente-d6e0-523a-7700",
+    "enderecoEntrega": "Pra\u00e7a do Pedido Vazio, s/n",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "b7025986-2efd-452c-8114-df662d44dd97",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:47:52 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNUQWGN2oAMERoA="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9a68-54550210088e37a2113257a7;Parent=4051f2bfdde1e8a8;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "2cf8e9a9-7695-4d30-a66f-53ee4acaabe9"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "a81cXMdgtKp81aL_UMjc1HeaZeDovPFVx6zAe8BC7nmsjbO5R18Seg=="
+      ],
+      "via": [
+        "1.1 51391527dd8c879c45b44b119905c872.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "5a912ee1-7539-4dac-99b3-7474f91ff3f1",
+      "timestamp": "2025-08-12T19:47:52.228646",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "0"
+      },
+      "pedidoId": {
+        "S": "5a912ee1-7539-4dac-99b3-7474f91ff3f1"
+      },
+      "clienteId": {
+        "S": "cliente-d6e0-523a-7700"
+      },
+      "enderecoEntrega": {
+        "S": "Pra\u00e7a do Pedido Vazio, s/n"
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {}
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:47:52.228646"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "B5NPFK622CIJG897RUMJLH2GQJVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "1171023319"
+        ],
+        "Content-Length": [
+          "299"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:47:52 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "299",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:47:52 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "1171023319",
+        "x-amzn-RequestId": "B5NPFK622CIJG897RUMJLH2GQJVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "B5NPFK622CIJG897RUMJLH2GQJVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:47:53] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:47:53] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:47:53] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:47:53] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:47:53] [INFO] Executando cenário: cenário_de_borda_com_'enderecoentrega'_vazio
+[2025-08-12 16:47:53] [INFO] ID da Execução do Teste: 594c2a51-e340-4df7-b50f-cf33bee6ddba
+[2025-08-12 16:47:53] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-594c2a51-20250812164753
+[2025-08-12 16:47:53] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-594c2a51-20250812164753
+[2025-08-12 16:47:53] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:47:56] [INFO] 
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---
+[2025-08-12 16:47:56] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-594c2a51-20250812164753
+[2025-08-12 16:47:56] [DEBUG] Output completo da SFN: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "594c2a51-e340-4df7-b50f-cf33bee6ddba",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:47:55 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNUQ3G_voAMERUQ="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9a6b-7b472dab0d3652f65467aa98;Parent=7d2b42ac90c3e9fa;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "bfc2f73f-23d6-4bb1-aa5d-9cd9e2507d2e"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "psCHJM3QHwziNXAlcBUi_YAEmSW0FTBBUWsBA8HD8admeZ2Iycp31A=="
+      ],
+      "via": [
+        "1.1 51391527dd8c879c45b44b119905c872.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "5468e677-4a52-4bc0-adad-0e7dd3db13da",
+      "timestamp": "2025-08-12T19:47:55.554849",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "5468e677-4a52-4bc0-adad-0e7dd3db13da"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:47:55.554849"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "VNOVABTQ0P535IK9R4KCDPE473VV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "4030702741"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:47:55 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:47:55 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "4030702741",
+        "x-amzn-RequestId": "VNOVABTQ0P535IK9R4KCDPE473VV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "VNOVABTQ0P535IK9R4KCDPE473VV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:47:56] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:47:56] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:47:56] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:47:56] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:47:56] [INFO] Executando cenário: falha-campo-obrigatorio-ausente
+[2025-08-12 16:47:56] [INFO] ID da Execução do Teste: 31cb3807-fefe-4638-ad2e-f430d73276f0
+[2025-08-12 16:47:56] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-31cb3807-20250812164756
+[2025-08-12 16:47:56] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-31cb3807-20250812164756
+[2025-08-12 16:47:56] [INFO] Aguardando a conclusão do teste 'falha-campo-obrigatorio-ausente'...
+[2025-08-12 16:47:59] [INFO] 
+--- Resultados do Teste: falha-campo-obrigatorio-ausente ---
+[2025-08-12 16:47:59] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-31cb3807-20250812164756
+[2025-08-12 16:47:59] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:47:59] [INFO] Status AWS: FAILED
+[2025-08-12 16:47:59] [INFO] Causa: Não especificada.
+[2025-08-12 16:47:59] [INFO] Erro: Não especificado.
+[2025-08-12 16:47:59] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:47:59] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:47:59] [INFO] Erro: None, Causa: None
+[2025-08-12 16:47:59] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:47:59] [INFO] Executando cenário: falha-dados-invalidos
+[2025-08-12 16:47:59] [INFO] ID da Execução do Teste: 6b046391-7154-47f2-8adb-06fa4d8fd30d
+[2025-08-12 16:47:59] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-6b046391-20250812164759
+[2025-08-12 16:47:59] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-6b046391-20250812164759
+[2025-08-12 16:47:59] [INFO] Aguardando a conclusão do teste 'falha-dados-invalidos'...
+[2025-08-12 16:48:03] [INFO] 
+--- Resultados do Teste: falha-dados-invalidos ---
+[2025-08-12 16:48:03] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-6b046391-20250812164759
+[2025-08-12 16:48:03] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:48:03] [INFO] Status AWS: FAILED
+[2025-08-12 16:48:03] [INFO] Causa: Não especificada.
+[2025-08-12 16:48:03] [INFO] Erro: Não especificado.
+[2025-08-12 16:48:03] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:48:03] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:48:03] [INFO] Erro: None, Causa: None
+[2025-08-12 16:48:03] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:48:03] [INFO] Executando cenário: falha_com_item_sem_o_campo_'nome'
+[2025-08-12 16:48:03] [INFO] ID da Execução do Teste: 217b37f2-9558-4216-8f29-033c312a00d2
+[2025-08-12 16:48:03] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-item-sem-o-campo-'nome'-217b37f2-20250812164803
+[2025-08-12 16:48:03] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-item-sem-o-campo-'nome'-217b37f2-20250812164803
+[2025-08-12 16:48:03] [INFO] Aguardando a conclusão do teste 'falha_com_item_sem_o_campo_'nome''...
+[2025-08-12 16:48:06] [INFO] 
+--- Resultados do Teste: falha_com_item_sem_o_campo_'nome' ---
+[2025-08-12 16:48:06] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-item-sem-o-campo-'nome'-217b37f2-20250812164803
+[2025-08-12 16:48:06] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:48:06] [INFO] Status AWS: FAILED
+[2025-08-12 16:48:06] [INFO] Causa: Não especificada.
+[2025-08-12 16:48:06] [INFO] Erro: Não especificado.
+[2025-08-12 16:48:06] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:48:06] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:48:06] [INFO] Erro: None, Causa: None
+[2025-08-12 16:48:06] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:48:06] [INFO] Executando cenário: falha_com_tipo_de_dado_incorreto_para_o_campo_'items'
+[2025-08-12 16:48:06] [INFO] ID da Execução do Teste: d3a0a839-d08b-4b84-9073-329cca9606d5
+[2025-08-12 16:48:06] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-tipo-de-dado-incorreto-para-o-campo-'items'-d3a0a839-20250812164806
+[2025-08-12 16:48:06] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-tipo-de-dado-incorreto-para-o-campo-'items'-d3a0a839-20250812164806
+[2025-08-12 16:48:06] [INFO] Aguardando a conclusão do teste 'falha_com_tipo_de_dado_incorreto_para_o_campo_'items''...
+[2025-08-12 16:48:09] [INFO] 
+--- Resultados do Teste: falha_com_tipo_de_dado_incorreto_para_o_campo_'items' ---
+[2025-08-12 16:48:09] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-tipo-de-dado-incorreto-para-o-campo-'items'-d3a0a839-20250812164806
+[2025-08-12 16:48:09] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:48:09] [INFO] Status AWS: FAILED
+[2025-08-12 16:48:09] [INFO] Causa: Não especificada.
+[2025-08-12 16:48:09] [INFO] Erro: Não especificado.
+[2025-08-12 16:48:09] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:48:09] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:48:09] [INFO] Erro: None, Causa: None
+[2025-08-12 16:48:09] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:48:09] [INFO] Executando cenário: sucesso-pedido-completo
+[2025-08-12 16:48:09] [INFO] ID da Execução do Teste: 59d8d577-1a7d-4c3f-8198-03ba08350b6e
+[2025-08-12 16:48:09] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:sucesso-pedido-completo-59d8d577-20250812164809
+[2025-08-12 16:48:09] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:sucesso-pedido-completo-59d8d577-20250812164809
+[2025-08-12 16:48:09] [INFO] Aguardando a conclusão do teste 'sucesso-pedido-completo'...
+[2025-08-12 16:48:12] [INFO] 
+--- Resultados do Teste: sucesso-pedido-completo ---
+[2025-08-12 16:48:12] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:sucesso-pedido-completo-59d8d577-20250812164809
+[2025-08-12 16:48:12] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:48:12] [INFO] Status AWS: FAILED
+[2025-08-12 16:48:12] [INFO] Causa: Não especificada.
+[2025-08-12 16:48:12] [INFO] Erro: Não especificado.
+[2025-08-12 16:48:12] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:48:12] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:48:12] [INFO] Erro: None, Causa: None
+[2025-08-12 16:48:12] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:48:12] [INFO] 
+--- Resumo da Execução ---
+[2025-08-12 16:48:12] [INFO] Testes Passaram: 2
+[2025-08-12 16:48:12] [INFO] Testes Falharam: 5
+[2025-08-12 16:48:12] [INFO] --------------------------
+
+[2025-08-12 16:50:09] [INFO] 
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---
+[2025-08-12 16:50:09] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:50:10] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:50:10] [INFO] Aguardando a conclusão do teste 'borda-pedido-sem-itens'...
+[2025-08-12 16:50:13] [DEBUG] Output completo da SFN para 'borda-pedido-sem-itens': {
+  "description": "Cen\u00e1rio de borda com um dicion\u00e1rio de itens vazio. A valida\u00e7\u00e3o atual permite isso.",
+  "input": {
+    "items": {},
+    "clienteId": "cliente-d6e0-523a-7700",
+    "enderecoEntrega": "Pra\u00e7a do Pedido Vazio, s/n",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "2753875c-e7cb-4bb8-a823-0942ae329374",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:50:12 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNUmUFGfoAMEhgw="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9af4-106d43b643f3f44f1757d1aa;Parent=19d9517bfeae00c9;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "b5132be2-a3c3-435c-8d00-fee0e30da222"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "uiN653OSrNS4lZ5bOS0bbnbkAGrG6uZO2O41_-9Hj7_C2AA3yhEjAA=="
+      ],
+      "via": [
+        "1.1 ddeb8679359f033dad405557c487bfdc.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "a1d81dee-a30c-4e76-bbb8-92973a34d808",
+      "timestamp": "2025-08-12T19:50:12.866679",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "0"
+      },
+      "pedidoId": {
+        "S": "a1d81dee-a30c-4e76-bbb8-92973a34d808"
+      },
+      "clienteId": {
+        "S": "cliente-d6e0-523a-7700"
+      },
+      "enderecoEntrega": {
+        "S": "Pra\u00e7a do Pedido Vazio, s/n"
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {}
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:50:12.866679"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "KPRIMP0STAL3DBFMMG365ME2Q7VV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "2232696550"
+        ],
+        "Content-Length": [
+          "299"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:50:12 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "299",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:50:12 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "2232696550",
+        "x-amzn-RequestId": "KPRIMP0STAL3DBFMMG365ME2Q7VV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "KPRIMP0STAL3DBFMMG365ME2Q7VV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:50:13] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:50:17] [DEBUG] Output completo da SFN para 'cenário_de_borda_com_'enderecoentrega'_vazio': {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "bbf267a5-0dab-4e35-a7a4-b1caf5be4aec",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:50:16 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNUm0FFfIAMEhYg="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9af8-2901bf8524c49bc37fd1b958;Parent=16c80277bd7bc884;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "81fc0492-9c26-4960-a8aa-7d88a896cd6e"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "OVWa95pGptM-bosRpeqSFrfbaon192X6fioKZ3dB5d9SXuFx-3XSUA=="
+      ],
+      "via": [
+        "1.1 e89d95d090c0c86ecc7b8930e434625c.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "138c601d-788a-403a-bb3c-eb41eeeaca02",
+      "timestamp": "2025-08-12T19:50:16.050200",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "138c601d-788a-403a-bb3c-eb41eeeaca02"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:50:16.050200"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "M6Q9ING0NO5B4O10I7QOAFCJTRVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "1196387687"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:50:16 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:50:16 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "1196387687",
+        "x-amzn-RequestId": "M6Q9ING0NO5B4O10I7QOAFCJTRVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "M6Q9ING0NO5B4O10I7QOAFCJTRVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:50:17] [INFO] Aguardando a conclusão do teste 'falha-campo-obrigatorio-ausente'...
+[2025-08-12 16:50:20] [DEBUG] Output completo da SFN para 'falha-campo-obrigatorio-ausente': {}
+[2025-08-12 16:50:20] [INFO] Aguardando a conclusão do teste 'falha-dados-invalidos'...
+[2025-08-12 16:50:23] [DEBUG] Output completo da SFN para 'falha-dados-invalidos': {}
+[2025-08-12 16:50:23] [INFO] Aguardando a conclusão do teste 'falha_com_item_sem_o_campo_'nome''...
+[2025-08-12 16:50:26] [DEBUG] Output completo da SFN para 'falha_com_item_sem_o_campo_'nome'': {}
+[2025-08-12 16:50:27] [INFO] Aguardando a conclusão do teste 'falha_com_tipo_de_dado_incorreto_para_o_campo_'items''...
+[2025-08-12 16:50:30] [DEBUG] Output completo da SFN para 'falha_com_tipo_de_dado_incorreto_para_o_campo_'items'': {}
+[2025-08-12 16:50:30] [INFO] Aguardando a conclusão do teste 'sucesso-pedido-completo'...
+[2025-08-12 16:50:33] [DEBUG] Output completo da SFN para 'sucesso-pedido-completo': {}
+[2025-08-12 16:50:33] [INFO] 
+--- Resumo da Execução ---
+[2025-08-12 16:50:33] [INFO] Testes Passaram: 7
+[2025-08-12 16:50:33] [INFO] Testes Falharam: 0
+[2025-08-12 16:50:33] [INFO] --------------------------
+
+[2025-08-12 16:53:01] [INFO] Nenhuma suíte selecionada. Encerrando.
+[2025-08-12 16:53:44] [INFO] 
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---
+[2025-08-12 16:53:44] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:53:45] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:53:45] [INFO] Aguardando a conclusão do teste 'borda-pedido-sem-itens'...
+[2025-08-12 16:53:48] [DEBUG] Output completo da SFN para 'borda-pedido-sem-itens': {
+  "description": "Cen\u00e1rio de borda com um dicion\u00e1rio de itens vazio. A valida\u00e7\u00e3o atual permite isso.",
+  "input": {
+    "items": {},
+    "clienteId": "cliente-d6e0-523a-7700",
+    "enderecoEntrega": "Pra\u00e7a do Pedido Vazio, s/n",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "d2e0f871-9b12-418c-9ab7-0ccf6dd13816",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:53:48 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNVH7HrQoAMEc_A="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9bcb-6b94399c536387e629c01e60;Parent=671cf04cbde8afd0;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "83d22b43-d662-4179-b7fb-c7c4c4927ce7"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "JNc0Qx19M9Kz6unzOO53mfpHNK8zrIAqU3fXV8boEqAxnUp_yXqUsw=="
+      ],
+      "via": [
+        "1.1 c35f767218cbd1125d801b52fa785c8c.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "2cfdb50c-3db9-4246-91a3-47e243788fc3",
+      "timestamp": "2025-08-12T19:53:47.945050",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "0"
+      },
+      "pedidoId": {
+        "S": "2cfdb50c-3db9-4246-91a3-47e243788fc3"
+      },
+      "clienteId": {
+        "S": "cliente-d6e0-523a-7700"
+      },
+      "enderecoEntrega": {
+        "S": "Pra\u00e7a do Pedido Vazio, s/n"
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {}
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:53:47.945050"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "7RSIB0AG9OPI44E3OTQVPCRHSNVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "37785641"
+        ],
+        "Content-Length": [
+          "299"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:53:48 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "299",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:53:48 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "37785641",
+        "x-amzn-RequestId": "7RSIB0AG9OPI44E3OTQVPCRHSNVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "7RSIB0AG9OPI44E3OTQVPCRHSNVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:53:49] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:53:52] [DEBUG] Output completo da SFN para 'cenário_de_borda_com_'enderecoentrega'_vazio': {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "f8dbf4b1-9a1d-4d62-8e26-88e2a2e5fb4b",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:53:51 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNVIcGs0oAMEcAg="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9bcf-537e83ef5b6c1eaf43585799;Parent=7a3c3d51eaac0598;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "f7ae9354-8e25-4cb5-ac19-d4d19a26dd5d"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "AGQ6GaRMvT-Ju8mmVfHsbLu_aiV20AxBaq1vNf0Ws_vGi6AglsYpLA=="
+      ],
+      "via": [
+        "1.1 9c90b41a9e5ac2856624d29ed4da4234.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "4f762517-1367-443e-9966-9c87490342c6",
+      "timestamp": "2025-08-12T19:53:51.314069",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "4f762517-1367-443e-9966-9c87490342c6"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:53:51.314069"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "ATC4UBUT2OLO5PC6IHPDJB5R3NVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "2349060666"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:53:51 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:53:51 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "2349060666",
+        "x-amzn-RequestId": "ATC4UBUT2OLO5PC6IHPDJB5R3NVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "ATC4UBUT2OLO5PC6IHPDJB5R3NVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:53:52] [INFO] Aguardando a conclusão do teste 'falha-campo-obrigatorio-ausente'...
+[2025-08-12 16:53:54] [INFO] 
+Operação cancelada pelo usuário.
+[2025-08-12 16:54:04] [INFO] 
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---
+[2025-08-12 16:54:04] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:54:05] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:54:05] [INFO] Executando cenário: cenário_de_borda_com_'enderecoentrega'_vazio
+[2025-08-12 16:54:05] [INFO] ID da Execução do Teste: b426b46c-e71b-4b67-bd1b-585605c89fa0
+[2025-08-12 16:54:05] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-b426b46c-20250812165405
+[2025-08-12 16:54:05] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-b426b46c-20250812165405
+[2025-08-12 16:54:05] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:54:08] [INFO] 
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---
+[2025-08-12 16:54:08] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-b426b46c-20250812165405
+[2025-08-12 16:54:08] [DEBUG] Output completo da SFN: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "b426b46c-e71b-4b67-bd1b-585605c89fa0",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:54:07 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNVK-G12IAMEDxA="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9bdf-70aad8dc3640b49641ccf33e;Parent=32d231448a3b4663;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "b62c585a-24e8-4fe7-a9d1-d8a2b277c491"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "nG0bpZ2rvk2AVkMYY8GA5cCIn0vDajOKTf-qoCgI3_ud1LcNDmH8FQ=="
+      ],
+      "via": [
+        "1.1 c34bd35d24f6df50307d1ac92d0f6110.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "6a0660d6-a578-4858-ada1-8271bd248dc6",
+      "timestamp": "2025-08-12T19:54:07.437722",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "6a0660d6-a578-4858-ada1-8271bd248dc6"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:54:07.437722"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "D06E4JLPKP9U2C9N5I177TAVCBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "287801662"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:54:07 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:54:07 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "287801662",
+        "x-amzn-RequestId": "D06E4JLPKP9U2C9N5I177TAVCBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "D06E4JLPKP9U2C9N5I177TAVCBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:54:08] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:54:08] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:54:08] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:54:08] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:54:08] [INFO] 
+--- Resumo da Execução ---
+[2025-08-12 16:54:08] [INFO] Testes Passaram: 1
+[2025-08-12 16:54:08] [INFO] Testes Falharam: 0
+[2025-08-12 16:54:08] [INFO] --------------------------
+
+[2025-08-12 16:54:17] [INFO] 
+--- Iniciando Suíte de Teste: PedidoServiceSam-OrderE2ETest ---
+[2025-08-12 16:54:17] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:54:18] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:54:18] [INFO] Executando cenário: borda-pedido-sem-itens
+[2025-08-12 16:54:18] [INFO] ID da Execução do Teste: 73211237-8304-4d57-8430-6e9584b2ddb2
+[2025-08-12 16:54:18] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-73211237-20250812165418
+[2025-08-12 16:54:18] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-73211237-20250812165418
+[2025-08-12 16:54:18] [INFO] Aguardando a conclusão do teste 'borda-pedido-sem-itens'...
+[2025-08-12 16:54:21] [INFO] 
+--- Resultados do Teste: borda-pedido-sem-itens ---
+[2025-08-12 16:54:21] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-73211237-20250812165418
+[2025-08-12 16:54:21] [DEBUG] Output completo da SFN: {
+  "description": "Cen\u00e1rio de borda com um dicion\u00e1rio de itens vazio. A valida\u00e7\u00e3o atual permite isso.",
+  "input": {
+    "items": {},
+    "clienteId": "cliente-d6e0-523a-7700",
+    "enderecoEntrega": "Pra\u00e7a do Pedido Vazio, s/n",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "73211237-8304-4d57-8430-6e9584b2ddb2",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:54:20 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNVNAERGoAMEscw="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9bec-097874af6ffc64116deb561d;Parent=44db640ab86f6029;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "4917e015-c8e8-4b38-ae53-fa02146edcfe"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "QkWDRSBb2Q3rT_dIzlhD-vbqY4U6GFGbWf_9scGfNsPcMMFUwnfrJg=="
+      ],
+      "via": [
+        "1.1 ac28147bf6a75debb0811f62b6224e6e.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "05e2fd52-92c5-479f-9ef5-efb0c7d0c8c7",
+      "timestamp": "2025-08-12T19:54:20.452690",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "0"
+      },
+      "pedidoId": {
+        "S": "05e2fd52-92c5-479f-9ef5-efb0c7d0c8c7"
+      },
+      "clienteId": {
+        "S": "cliente-d6e0-523a-7700"
+      },
+      "enderecoEntrega": {
+        "S": "Pra\u00e7a do Pedido Vazio, s/n"
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {}
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:54:20.452690"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "0IKA7K1AC7GGIRI3ML04B0SQLRVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "1952211168"
+        ],
+        "Content-Length": [
+          "299"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:54:20 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "299",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:54:20 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "1952211168",
+        "x-amzn-RequestId": "0IKA7K1AC7GGIRI3ML04B0SQLRVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "0IKA7K1AC7GGIRI3ML04B0SQLRVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:54:21] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:54:21] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:54:21] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:54:21] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:54:21] [INFO] Executando cenário: cenário_de_borda_com_'enderecoentrega'_vazio
+[2025-08-12 16:54:21] [INFO] ID da Execução do Teste: c29df25b-7ff7-41ed-a2b7-6cb0b169a3c5
+[2025-08-12 16:54:21] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-c29df25b-20250812165421
+[2025-08-12 16:54:21] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-c29df25b-20250812165421
+[2025-08-12 16:54:21] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:54:24] [INFO] 
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---
+[2025-08-12 16:54:24] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-c29df25b-20250812165421
+[2025-08-12 16:54:24] [DEBUG] Output completo da SFN: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "c29df25b-7ff7-41ed-a2b7-6cb0b169a3c5",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:54:23 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNVNhEAGIAMEm9g="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9bef-69e30c3d3acfb5946eb42f7c;Parent=35081c49992f3ae0;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "aef68ecd-230d-48a4-b9d1-f8bca5da3130"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "CXkAVdERZi23aFtZU1zi6XyC_UdRNAuZxmNzXKkwbqJYjxFzyGFCtw=="
+      ],
+      "via": [
+        "1.1 613faec4b883bfe2ebdd8a74d5006f4c.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "098af93f-9094-419e-af1d-2ff6ed0c4748",
+      "timestamp": "2025-08-12T19:54:23.758213",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "098af93f-9094-419e-af1d-2ff6ed0c4748"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:54:23.758213"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "2NE8FG5R45F8EJK9KD1FGTL01FVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "2479264702"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:54:23 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:54:23 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "2479264702",
+        "x-amzn-RequestId": "2NE8FG5R45F8EJK9KD1FGTL01FVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "2NE8FG5R45F8EJK9KD1FGTL01FVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:54:24] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:54:24] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:54:24] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:54:24] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:54:24] [INFO] Executando cenário: falha-campo-obrigatorio-ausente
+[2025-08-12 16:54:24] [INFO] ID da Execução do Teste: 5cdd11e2-d784-49ca-b496-2dc1bad278cc
+[2025-08-12 16:54:24] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-5cdd11e2-20250812165424
+[2025-08-12 16:54:24] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-5cdd11e2-20250812165424
+[2025-08-12 16:54:24] [INFO] Aguardando a conclusão do teste 'falha-campo-obrigatorio-ausente'...
+[2025-08-12 16:54:28] [INFO] 
+--- Resultados do Teste: falha-campo-obrigatorio-ausente ---
+[2025-08-12 16:54:28] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-5cdd11e2-20250812165424
+[2025-08-12 16:54:28] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:54:28] [INFO] Status AWS: FAILED
+[2025-08-12 16:54:28] [INFO] Causa: Não especificada.
+[2025-08-12 16:54:28] [INFO] Erro: Não especificado.
+[2025-08-12 16:54:28] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:54:28] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:54:28] [INFO] Erro: None, Causa: None
+[2025-08-12 16:54:28] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:54:28] [INFO] Executando cenário: falha-dados-invalidos
+[2025-08-12 16:54:28] [INFO] ID da Execução do Teste: 74219d95-0abd-48e5-b220-e0eaa5cc018e
+[2025-08-12 16:54:28] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-74219d95-20250812165428
+[2025-08-12 16:54:28] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-74219d95-20250812165428
+[2025-08-12 16:54:28] [INFO] Aguardando a conclusão do teste 'falha-dados-invalidos'...
+[2025-08-12 16:54:30] [INFO] 
+Operação cancelada pelo usuário.
+[2025-08-12 16:56:58] [INFO] Nenhuma suíte selecionada. Encerrando.
+[2025-08-12 16:57:06] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:57:07] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:57:09] [INFO] Executando testes em modo PARALELO.
+[2025-08-12 16:57:09] [INFO] Executando cenário: borda-pedido-sem-itens
+[2025-08-12 16:57:09] [INFO] Executando cenário: cenário_de_borda_com_'enderecoentrega'_vazio
+[2025-08-12 16:57:09] [INFO] Executando cenário: falha-campo-obrigatorio-ausente
+[2025-08-12 16:57:09] [INFO] Executando cenário: falha-dados-invalidos
+[2025-08-12 16:57:09] [INFO] Executando cenário: sucesso-pedido-completo
+[2025-08-12 16:57:09] [INFO] Executando cenário: falha_com_tipo_de_dado_incorreto_para_o_campo_'items'
+[2025-08-12 16:57:09] [INFO] ID da Execução do Teste: 30aaab52-9528-4968-a566-486a0e72e54e
+[2025-08-12 16:57:09] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-30aaab52-20250812165709
+[2025-08-12 16:57:09] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-30aaab52-20250812165709
+[2025-08-12 16:57:09] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:57:09] [INFO] ID da Execução do Teste: 2555e24a-e0c3-4b72-96ac-c9a44c5c2203
+[2025-08-12 16:57:09] [INFO] ID da Execução do Teste: c0ac7851-4639-4522-bff1-d7a2320a2bcd
+[2025-08-12 16:57:09] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-2555e24a-20250812165709
+[2025-08-12 16:57:09] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-c0ac7851-20250812165709
+[2025-08-12 16:57:09] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-2555e24a-20250812165709
+[2025-08-12 16:57:09] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-c0ac7851-20250812165709
+[2025-08-12 16:57:09] [INFO] Aguardando a conclusão do teste 'borda-pedido-sem-itens'...
+[2025-08-12 16:57:09] [INFO] Aguardando a conclusão do teste 'falha-dados-invalidos'...
+[2025-08-12 16:57:09] [INFO] ID da Execução do Teste: 9a2619ee-12c3-44cb-bee4-f3b7020ad5c9
+[2025-08-12 16:57:09] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-9a2619ee-20250812165709
+[2025-08-12 16:57:09] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-9a2619ee-20250812165709
+[2025-08-12 16:57:09] [INFO] Aguardando a conclusão do teste 'falha-campo-obrigatorio-ausente'...
+[2025-08-12 16:57:09] [INFO] ID da Execução do Teste: 91b33306-003d-472a-9225-bb1d6721d76b
+[2025-08-12 16:57:09] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-item-sem-o-campo-'nome'-91b33306-20250812165709
+[2025-08-12 16:57:09] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-item-sem-o-campo-'nome'-91b33306-20250812165709
+[2025-08-12 16:57:09] [INFO] Aguardando a conclusão do teste 'falha_com_item_sem_o_campo_'nome''...
+[2025-08-12 16:57:09] [INFO] ID da Execução do Teste: f3d772d8-62ae-449c-895f-7c8100f0acc2
+[2025-08-12 16:57:09] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:sucesso-pedido-completo-f3d772d8-20250812165709
+[2025-08-12 16:57:09] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:sucesso-pedido-completo-f3d772d8-20250812165709
+[2025-08-12 16:57:09] [INFO] Aguardando a conclusão do teste 'sucesso-pedido-completo'...
+[2025-08-12 16:57:09] [INFO] ID da Execução do Teste: f611fd23-5fbb-4eca-b1f5-065b45713bba
+[2025-08-12 16:57:09] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-tipo-de-dado-incorreto-para-o-campo-'items'-f611fd23-20250812165709
+[2025-08-12 16:57:09] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-tipo-de-dado-incorreto-para-o-campo-'items'-f611fd23-20250812165709
+[2025-08-12 16:57:09] [INFO] Aguardando a conclusão do teste 'falha_com_tipo_de_dado_incorreto_para_o_campo_'items''...
+[2025-08-12 16:57:12] [INFO] 
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---
+[2025-08-12 16:57:12] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-30aaab52-20250812165709
+[2025-08-12 16:57:12] [DEBUG] Output completo da SFN: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "30aaab52-9528-4968-a566-486a0e72e54e",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:57:11 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNVnsGUioAMEKrA="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9c97-5e9b6c4f5f539647248bf3dc;Parent=0e5c6fad46c757e0;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "630e6b32-2a7c-4513-9cf6-b82e7c60131a"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "SpPSu8vCBboYkdt_Jq9uujww5mx3yQexCV0btYxmDAUQ2GisX3CXjw=="
+      ],
+      "via": [
+        "1.1 e685e9e08c2e4b105f4d86b35da50628.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "a90f0df4-8ad9-4172-9de1-3ec1d0dc86dc",
+      "timestamp": "2025-08-12T19:57:11.321573",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "a90f0df4-8ad9-4172-9de1-3ec1d0dc86dc"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:57:11.321573"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "5E3A4E2718K66AE6V7OGVNJE93VV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "3008564309"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:57:11 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:57:11 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "3008564309",
+        "x-amzn-RequestId": "5E3A4E2718K66AE6V7OGVNJE93VV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "5E3A4E2718K66AE6V7OGVNJE93VV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:57:12] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:57:12] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:57:12] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:57:12] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:57:13] [INFO] 
+--- Resultados do Teste: falha-dados-invalidos ---
+[2025-08-12 16:57:13] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-c0ac7851-20250812165709
+[2025-08-12 16:57:13] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:57:13] [INFO] Status AWS: FAILED
+[2025-08-12 16:57:13] [INFO] Causa: Não especificada.
+[2025-08-12 16:57:13] [INFO] Erro: Não especificado.
+[2025-08-12 16:57:13] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:57:13] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:57:13] [INFO] Erro: None, Causa: None
+[2025-08-12 16:57:13] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:57:13] [INFO] 
+--- Resultados do Teste: falha-campo-obrigatorio-ausente ---
+[2025-08-12 16:57:13] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-9a2619ee-20250812165709
+[2025-08-12 16:57:13] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:57:13] [INFO] Status AWS: FAILED
+[2025-08-12 16:57:13] [INFO] Causa: Não especificada.
+[2025-08-12 16:57:13] [INFO] Erro: Não especificado.
+[2025-08-12 16:57:13] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:57:13] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:57:13] [INFO] Erro: None, Causa: None
+[2025-08-12 16:57:13] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:57:13] [INFO] 
+--- Resultados do Teste: borda-pedido-sem-itens ---
+[2025-08-12 16:57:13] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-2555e24a-20250812165709
+[2025-08-12 16:57:13] [DEBUG] Output completo da SFN: {
+  "description": "Cen\u00e1rio de borda com um dicion\u00e1rio de itens vazio. A valida\u00e7\u00e3o atual permite isso.",
+  "input": {
+    "items": {},
+    "clienteId": "cliente-d6e0-523a-7700",
+    "enderecoEntrega": "Pra\u00e7a do Pedido Vazio, s/n",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "2555e24a-e0c3-4b72-96ac-c9a44c5c2203",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:57:12 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNVnzEmtIAMElKg="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9c97-1c14a88a7a968bfc103037da;Parent=6246c8e33b75b57b;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "a8c9a9dc-dbce-4d79-a6a1-4b1d4387070f"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "ulPytiHO8DHGarXNb2FRt7ycntRLaeqsE0_Sd_0l0GodLNUxUSLeug=="
+      ],
+      "via": [
+        "1.1 47c0295005ec7d8570406951491004c2.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "115a615f-a471-4d60-943e-017e6e64aebf",
+      "timestamp": "2025-08-12T19:57:11.999291",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "0"
+      },
+      "pedidoId": {
+        "S": "115a615f-a471-4d60-943e-017e6e64aebf"
+      },
+      "clienteId": {
+        "S": "cliente-d6e0-523a-7700"
+      },
+      "enderecoEntrega": {
+        "S": "Pra\u00e7a do Pedido Vazio, s/n"
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {}
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:57:11.999291"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "K4U90LVKGSIA3QD7T561QG0NKJVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "356402182"
+        ],
+        "Content-Length": [
+          "299"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:57:12 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "299",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:57:12 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "356402182",
+        "x-amzn-RequestId": "K4U90LVKGSIA3QD7T561QG0NKJVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "K4U90LVKGSIA3QD7T561QG0NKJVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:57:13] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:57:13] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:57:13] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:57:13] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:57:13] [INFO] 
+--- Resultados do Teste: falha_com_item_sem_o_campo_'nome' ---
+[2025-08-12 16:57:13] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-item-sem-o-campo-'nome'-91b33306-20250812165709
+[2025-08-12 16:57:13] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:57:13] [INFO] Status AWS: FAILED
+[2025-08-12 16:57:13] [INFO] Causa: Não especificada.
+[2025-08-12 16:57:13] [INFO] Erro: Não especificado.
+[2025-08-12 16:57:13] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:57:13] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:57:13] [INFO] Erro: None, Causa: None
+[2025-08-12 16:57:13] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:57:13] [INFO] 
+--- Resultados do Teste: sucesso-pedido-completo ---
+[2025-08-12 16:57:13] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:sucesso-pedido-completo-f3d772d8-20250812165709
+[2025-08-12 16:57:13] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:57:13] [INFO] Status AWS: FAILED
+[2025-08-12 16:57:13] [INFO] Causa: Não especificada.
+[2025-08-12 16:57:13] [INFO] Erro: Não especificado.
+[2025-08-12 16:57:13] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:57:13] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:57:13] [INFO] Erro: None, Causa: None
+[2025-08-12 16:57:13] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:57:13] [INFO] 
+--- Resultados do Teste: falha_com_tipo_de_dado_incorreto_para_o_campo_'items' ---
+[2025-08-12 16:57:13] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-tipo-de-dado-incorreto-para-o-campo-'items'-f611fd23-20250812165709
+[2025-08-12 16:57:13] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:57:13] [INFO] Status AWS: FAILED
+[2025-08-12 16:57:13] [INFO] Causa: Não especificada.
+[2025-08-12 16:57:13] [INFO] Erro: Não especificado.
+[2025-08-12 16:57:13] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:57:13] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:57:13] [INFO] Erro: None, Causa: None
+[2025-08-12 16:57:13] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:57:13] [INFO] 
+--- Resumo Final da Execução ---
+[2025-08-12 16:57:13] [INFO] Testes Passaram: 2
+[2025-08-12 16:57:13] [INFO] Testes Falharam: 5
+[2025-08-12 16:57:13] [INFO] --------------------------
+
+[2025-08-12 16:59:27] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 16:59:28] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 16:59:30] [INFO] Executando testes em modo PARALELO.
+[2025-08-12 16:59:30] [INFO] Executando cenário: borda-pedido-sem-itens
+[2025-08-12 16:59:30] [INFO] Executando cenário: cenário_de_borda_com_'enderecoentrega'_vazio
+[2025-08-12 16:59:30] [INFO] Executando cenário: falha-campo-obrigatorio-ausente
+[2025-08-12 16:59:30] [INFO] Executando cenário: falha_com_tipo_de_dado_incorreto_para_o_campo_'items'
+[2025-08-12 16:59:30] [INFO] Executando cenário: sucesso-pedido-completo
+[2025-08-12 16:59:30] [INFO] Executando cenário: falha-dados-invalidos
+[2025-08-12 16:59:30] [INFO] Executando cenário: falha_com_item_sem_o_campo_'nome'
+[2025-08-12 16:59:30] [INFO] ID da Execução do Teste: 6e2e879e-ddba-42a0-adc8-64b4c8350c77
+[2025-08-12 16:59:30] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-6e2e879e-20250812165930
+[2025-08-12 16:59:30] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-6e2e879e-20250812165930
+[2025-08-12 16:59:30] [INFO] Aguardando a conclusão do teste 'falha-campo-obrigatorio-ausente'...
+[2025-08-12 16:59:31] [INFO] ID da Execução do Teste: c5588748-ee38-401c-a2af-68abf4d61980
+[2025-08-12 16:59:31] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-item-sem-o-campo-'nome'-c5588748-20250812165930
+[2025-08-12 16:59:31] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-item-sem-o-campo-'nome'-c5588748-20250812165930
+[2025-08-12 16:59:31] [INFO] Aguardando a conclusão do teste 'falha_com_item_sem_o_campo_'nome''...
+[2025-08-12 16:59:31] [INFO] ID da Execução do Teste: fed5982d-4d78-4fa9-937d-a610af7cc9c6
+[2025-08-12 16:59:31] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-fed5982d-20250812165930
+[2025-08-12 16:59:31] [INFO] ID da Execução do Teste: d23c529e-1fb7-4a85-a481-3056f587c837
+[2025-08-12 16:59:31] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-fed5982d-20250812165930
+[2025-08-12 16:59:31] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-tipo-de-dado-incorreto-para-o-campo-'items'-d23c529e-20250812165930
+[2025-08-12 16:59:31] [INFO] Aguardando a conclusão do teste 'borda-pedido-sem-itens'...
+[2025-08-12 16:59:31] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-tipo-de-dado-incorreto-para-o-campo-'items'-d23c529e-20250812165930
+[2025-08-12 16:59:31] [INFO] Aguardando a conclusão do teste 'falha_com_tipo_de_dado_incorreto_para_o_campo_'items''...
+[2025-08-12 16:59:31] [INFO] ID da Execução do Teste: 8c8e9454-689b-4437-b2c4-d4d6e2bc48bd
+[2025-08-12 16:59:31] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-8c8e9454-20250812165930
+[2025-08-12 16:59:31] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-8c8e9454-20250812165930
+[2025-08-12 16:59:31] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 16:59:31] [INFO] ID da Execução do Teste: 3e0828ff-183c-4afc-91cd-727e50088eda
+[2025-08-12 16:59:31] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:sucesso-pedido-completo-3e0828ff-20250812165930
+[2025-08-12 16:59:31] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:sucesso-pedido-completo-3e0828ff-20250812165930
+[2025-08-12 16:59:31] [INFO] Aguardando a conclusão do teste 'sucesso-pedido-completo'...
+[2025-08-12 16:59:31] [INFO] ID da Execução do Teste: a8fd49f3-ffc4-4ccb-8e4a-291f02fc8d21
+[2025-08-12 16:59:31] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-a8fd49f3-20250812165930
+[2025-08-12 16:59:31] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-a8fd49f3-20250812165930
+[2025-08-12 16:59:31] [INFO] Aguardando a conclusão do teste 'falha-dados-invalidos'...
+[2025-08-12 16:59:33] [INFO] 
+--- Resultados do Teste: falha-campo-obrigatorio-ausente ---
+[2025-08-12 16:59:33] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-campo-obrigatorio-ausente-6e2e879e-20250812165930
+[2025-08-12 16:59:33] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:59:33] [INFO] Status AWS: FAILED
+[2025-08-12 16:59:33] [INFO] Causa: Não especificada.
+[2025-08-12 16:59:33] [INFO] Erro: Não especificado.
+[2025-08-12 16:59:33] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:59:33] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:59:33] [INFO] Erro: None, Causa: None
+[2025-08-12 16:59:33] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:59:34] [INFO] 
+--- Resultados do Teste: falha_com_item_sem_o_campo_'nome' ---
+[2025-08-12 16:59:34] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-item-sem-o-campo-'nome'-c5588748-20250812165930
+[2025-08-12 16:59:34] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:59:34] [INFO] Status AWS: FAILED
+[2025-08-12 16:59:34] [INFO] Causa: Não especificada.
+[2025-08-12 16:59:34] [INFO] Erro: Não especificado.
+[2025-08-12 16:59:34] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:59:34] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:59:34] [INFO] Erro: None, Causa: None
+[2025-08-12 16:59:34] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:59:34] [INFO] 
+--- Resultados do Teste: borda-pedido-sem-itens ---
+[2025-08-12 16:59:34] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-fed5982d-20250812165930
+[2025-08-12 16:59:34] [DEBUG] Output completo da SFN: {
+  "description": "Cen\u00e1rio de borda com um dicion\u00e1rio de itens vazio. A valida\u00e7\u00e3o atual permite isso.",
+  "input": {
+    "items": {},
+    "clienteId": "cliente-d6e0-523a-7700",
+    "enderecoEntrega": "Pra\u00e7a do Pedido Vazio, s/n",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "fed5982d-4d78-4fa9-937d-a610af7cc9c6",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:59:33 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNV93HCQoAMEUvw="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9d25-1aac6ccf53227f61456f3a84;Parent=6a24fc356479821f;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "4a13d755-d4f9-4a2f-a3ff-1b0f6b9b6ad9"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "_WWZIhFpPQGBUacNQEaha9BlZ0ud97x1XGbBEXWYIlXSQXA-iT48pA=="
+      ],
+      "via": [
+        "1.1 199fd61d7551d8868317c5b53cc7d24c.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "d884f0c9-94aa-493b-9836-03d9704a1181",
+      "timestamp": "2025-08-12T19:59:33.206976",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "0"
+      },
+      "pedidoId": {
+        "S": "d884f0c9-94aa-493b-9836-03d9704a1181"
+      },
+      "clienteId": {
+        "S": "cliente-d6e0-523a-7700"
+      },
+      "enderecoEntrega": {
+        "S": "Pra\u00e7a do Pedido Vazio, s/n"
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {}
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:59:33.206976"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "JS8KKPQI0M5RSU0T02QQAJRUTRVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "1948285867"
+        ],
+        "Content-Length": [
+          "299"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:59:33 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "299",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:59:33 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "1948285867",
+        "x-amzn-RequestId": "JS8KKPQI0M5RSU0T02QQAJRUTRVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "JS8KKPQI0M5RSU0T02QQAJRUTRVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:59:34] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:59:34] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:59:34] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:59:34] [INFO] 
+--- Resultados do Teste: falha_com_tipo_de_dado_incorreto_para_o_campo_'items' ---
+[2025-08-12 16:59:34] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:59:34] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-com-tipo-de-dado-incorreto-para-o-campo-'items'-d23c529e-20250812165930
+[2025-08-12 16:59:34] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:59:34] [INFO] Status AWS: FAILED
+[2025-08-12 16:59:34] [INFO] Causa: Não especificada.
+[2025-08-12 16:59:34] [INFO] Erro: Não especificado.
+[2025-08-12 16:59:34] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:59:34] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:59:34] [INFO] Erro: None, Causa: None
+[2025-08-12 16:59:34] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:59:34] [INFO] 
+--- Resultados do Teste: sucesso-pedido-completo ---
+[2025-08-12 16:59:34] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:sucesso-pedido-completo-3e0828ff-20250812165930
+[2025-08-12 16:59:34] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:59:34] [INFO] Status AWS: FAILED
+[2025-08-12 16:59:34] [INFO] Causa: Não especificada.
+[2025-08-12 16:59:34] [INFO] Erro: Não especificado.
+[2025-08-12 16:59:34] [INFO] 
+--- Resultados do Teste: falha-dados-invalidos ---
+[2025-08-12 16:59:34] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:falha-dados-invalidos-a8fd49f3-20250812165930
+[2025-08-12 16:59:34] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:59:34] [DEBUG] Output completo da SFN: {}
+[2025-08-12 16:59:34] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:59:34] [INFO] Status AWS: FAILED
+[2025-08-12 16:59:34] [INFO] Erro: None, Causa: None
+[2025-08-12 16:59:34] [INFO] Causa: Não especificada.
+[2025-08-12 16:59:34] [INFO] Erro: Não especificado.
+[2025-08-12 16:59:34] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:59:34] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:59:34] [INFO] Validação Falhou: Status esperado 'SUCCEEDED', mas foi 'FAILED'.
+[2025-08-12 16:59:34] [INFO] Erro: None, Causa: None
+[2025-08-12 16:59:34] [INFO] Resultado Final: FALHOU ❌
+-----------------------------------------
+
+[2025-08-12 16:59:34] [INFO] 
+--- Resultados do Teste: cenário_de_borda_com_'enderecoentrega'_vazio ---
+[2025-08-12 16:59:34] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-8c8e9454-20250812165930
+[2025-08-12 16:59:34] [DEBUG] Output completo da SFN: {
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endere\u00e7o Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "8c8e9454-689b-4437-b2c4-d4d6e2bc48bd",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 19:59:33 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNV93GZnoAMEDiQ="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689b9d25-76dfb03b482761313d48ce58;Parent=7865a0bde462f943;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "a95ff5e9-5471-439b-baf3-cbec65281ddf"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "z33LoKVKuOY69NLJZF5m7mCIQQ6cfGfkpaPNHX9u-Tj78ZEUQPoGIw=="
+      ],
+      "via": [
+        "1.1 f37f104903bda438e8b0547be6e0c192.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "d704a105-ee6d-418e-ae3d-bf5936c82c4e",
+      "timestamp": "2025-08-12T19:59:33.215618",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "1000"
+      },
+      "pedidoId": {
+        "S": "d704a105-ee6d-418e-ae3d-bf5936c82c4e"
+      },
+      "clienteId": {
+        "S": "cliente-j1k2-55d6-e7f8"
+      },
+      "enderecoEntrega": {
+        "S": ""
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {
+          "prod-009": {
+            "M": {
+              "preco_unitario": {
+                "N": "1000"
+              },
+              "nome": {
+                "S": "Produto com Endere\u00e7o Vazio"
+              },
+              "quantidade": {
+                "N": "1"
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T19:59:33.215618"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "E0AROGK6IOO4I9PABM4TLIR9RVVV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "170150823"
+        ],
+        "Content-Length": [
+          "389"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 19:59:33 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "389",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 19:59:33 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "170150823",
+        "x-amzn-RequestId": "E0AROGK6IOO4I9PABM4TLIR9RVVV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "E0AROGK6IOO4I9PABM4TLIR9RVVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 16:59:34] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 16:59:34] [INFO] --- Validação do Cenário ---
+[2025-08-12 16:59:34] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 16:59:34] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 16:59:34] [INFO] 
+--- Resumo Final da Execução ---
+[2025-08-12 16:59:34] [INFO] Testes Passaram: 2
+[2025-08-12 16:59:34] [INFO] Testes Falharam: 5
+[2025-08-12 16:59:34] [INFO] --------------------------
+
