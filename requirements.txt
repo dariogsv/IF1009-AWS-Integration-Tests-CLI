@@ -1,3 +1,9 @@
 requests
 click
 boto3
+langchain
+langchain-openai
+langchain-groq
+langchain-anthropic
+langchain-google-genai
+pyyaml

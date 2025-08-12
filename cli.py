@@ -1,5 +1,5 @@
 import click
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Any
 from botocore.exceptions import ClientError
 import boto3
 import json
@@ -11,6 +11,9 @@ import yaml
 from pathlib import Path
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Attempt to import questionary for interactive mode
 try:
@@ -188,7 +191,7 @@ def validate_execution_result(execution_details: dict, scenario_config: dict) ->
 
     return True, messages
 
-def monitor_sfn_execution(execution_arn: str, scenario_name: str, scenario_config: dict) -> bool:
+def monitor_sfn_execution(execution_arn: str, scenario_name: str, scenario_config: dict, analysis_enabled: bool, analysis_provider: str) -> bool:
     """Aguarda a conclusão da execução, exibe o resultado e retorna o status de validação."""
     log_message(f"Aguardando a conclusão do teste '{scenario_name}'...")
     status = 'RUNNING'
@@ -217,6 +220,11 @@ def monitor_sfn_execution(execution_arn: str, scenario_name: str, scenario_confi
         log_message(click.style("Não foi possível obter os detalhes finais da execução.", fg='red'), err=True)
         return False
 
+    # Performance Measurement
+    if execution_details.get('startDate') and execution_details.get('stopDate'):
+        sfn_duration = execution_details['stopDate'] - execution_details['startDate']
+        log_message(f"Duração da Execução SFN: {sfn_duration.total_seconds():.2f} segundos")
+
     try:
         output = json.loads(execution_details.get('output', '{}'))
         log_message(f"Output completo da SFN: {json.dumps(output, indent=2)}", console=False, level="DEBUG")
@@ -231,6 +239,10 @@ def monitor_sfn_execution(execution_arn: str, scenario_name: str, scenario_confi
         log_message(click.style(f"Status AWS: FAILED", fg='red'))
         log_message(f"Causa: {execution_details.get('cause', 'Não especificada.')}")
         log_message(f"Erro: {execution_details.get('error', 'Não especificado.')}")
+        
+        if analysis_enabled:
+            _invoke_ai_analysis(scenario_config, execution_details, analysis_provider)
+
     else:
         log_message(click.style(f"Status AWS: {final_status}", fg='yellow'))
 
@@ -243,7 +255,7 @@ def monitor_sfn_execution(execution_arn: str, scenario_name: str, scenario_confi
     log_message(f"{final_verdict}\n" + click.style("-----------------------------------------\n", fg='cyan'))
     return is_pass
 
-def _run_single_test(state_machine_arn: str, scenario_path: Path, wait: bool) -> bool:
+def _run_single_test(state_machine_arn: str, scenario_path: Path, wait: bool, analysis_enabled: bool, analysis_provider: str) -> bool:
     """Helper function to load, start, and monitor a single test case."""
     scenario_name = scenario_path.stem
     log_message(click.style(f"Executando cenário: {scenario_name}", bold=True))
@@ -272,7 +284,7 @@ def _run_single_test(state_machine_arn: str, scenario_path: Path, wait: bool) ->
         log_message(f"Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/{execution_arn}")
 
         if wait:
-            return monitor_sfn_execution(execution_arn, scenario_name, test_scenario_config)
+            return monitor_sfn_execution(execution_arn, scenario_name, test_scenario_config, analysis_enabled, analysis_provider)
         else:
             log_message("Teste iniciado em modo 'no-wait'. A CLI não acompanhará a execução.")
             return True
@@ -284,13 +296,15 @@ def _run_single_test(state_machine_arn: str, scenario_path: Path, wait: bool) ->
         log_message(f"Erro inesperado ao executar teste: {e}", level="ERROR", err=True)
         return False
 
-def _run_and_summarize_tests(test_jobs: List[Dict], parallel: bool, wait: bool):
+def _run_and_summarize_tests(test_jobs: List[Dict], parallel: bool, wait: bool, analysis_enabled: bool, analysis_provider: str):
     """Dispatches test jobs for execution, either sequentially or in parallel, and summarizes results."""
     results = {'passed': 0, 'failed': 0}
     
     if not test_jobs:
         log_message("Nenhum teste para executar.", level="WARNING")
         return
+
+    run_start_time = time.monotonic()
 
     if parallel:
         log_message("Executando testes em modo PARALELO.", level="INFO")
@@ -300,7 +314,9 @@ def _run_and_summarize_tests(test_jobs: List[Dict], parallel: bool, wait: bool):
                     _run_single_test, 
                     job['state_machine_arn'], 
                     job['scenario_path'], 
-                    wait
+                    wait,
+                    analysis_enabled,
+                    analysis_provider
                 ): job for job in test_jobs
             }
             
@@ -319,21 +335,25 @@ def _run_and_summarize_tests(test_jobs: List[Dict], parallel: bool, wait: bool):
     else:
         log_message("Executando testes em modo SEQUENCIAL.", level="INFO")
         for job in test_jobs:
-            is_pass = _run_single_test(job['state_machine_arn'], job['scenario_path'], wait)
+            is_pass = _run_single_test(job['state_machine_arn'], job['scenario_path'], wait, analysis_enabled, analysis_provider)
             if is_pass:
                 results['passed'] += 1
             else:
                 results['failed'] += 1
     
+    run_end_time = time.monotonic()
+    total_duration = run_end_time - run_start_time
+
     log_message(click.style("\n--- Resumo Final da Execução ---", fg='cyan', bold=True))
     log_message(click.style(f"Testes Passaram: {results['passed']}", fg='green'))
     log_message(click.style(f"Testes Falharam: {results['failed']}", fg='red'))
+    log_message(click.style(f"Tempo Total de Execução (CLI): {total_duration:.2f} segundos", bold=True))
     log_message(click.style("--------------------------\n", fg='cyan', bold=True))
 
     if results['failed'] > 0:
         sys.exit(1)
 
-def _run_interactive_mode(wait: bool, parallel: bool):
+def _run_interactive_mode(wait: bool, parallel: bool, analysis_enabled: bool, analysis_provider: str):
     """Guides the user through an interactive session to select suites and scenarios."""
     if not questionary:
         log_message("Erro: O modo interativo requer a biblioteca 'questionary'.", level="ERROR", err=True)
@@ -398,7 +418,7 @@ def _run_interactive_mode(wait: bool, parallel: bool):
         if skipped_suites > 0:
             log_message(f"{skipped_suites} suíte(s) pulada(s) por não encontrar a SFN correspondente.")
 
-        _run_and_summarize_tests(test_jobs, parallel, wait)
+        _run_and_summarize_tests(test_jobs, parallel, wait, analysis_enabled, analysis_provider)
 
     except (KeyboardInterrupt, TypeError):
         log_message("\nOperação cancelada pelo usuário.", level="INFO")
@@ -417,8 +437,10 @@ def cli():
 @click.option('--scenario', '-s', 'scenarios_to_run', multiple=True, help='Executa cenários específicos pelo nome (sem a extensão .json).')
 @click.option('--interactive', '-i', is_flag=True, help='Inicia a CLI em modo interativo para selecionar suítes e cenários.')
 @click.option('--parallel', is_flag=True, help='Executa os testes em paralelo para maior velocidade.')
+@click.option('--analyze-failures', 'analysis_enabled', is_flag=True, help='Ativa a IA para analisar e sugerir correções para testes que falham.')
+@click.option('--provider', 'analysis_provider', default=None, help='Provedor de IA a ser usado para geração ou análise (ex: openai, gemini, azure, groq, claude, github).')
 @click.option('--wait/--no-wait', default=True, help='Espera a conclusão do teste e mostra o resultado. Padrão: --wait.')
-def run(suites_to_run: Tuple[str], scenarios_to_run: Tuple[str], wait: bool, interactive: bool, parallel: bool):
+def run(suites_to_run: Tuple[str], scenarios_to_run: Tuple[str], wait: bool, interactive: bool, parallel: bool, analysis_enabled: bool, analysis_provider: str):
     """
     Executa suítes de teste E2E a partir do diretório 'tests'.
 
@@ -426,17 +448,14 @@ def run(suites_to_run: Tuple[str], scenarios_to_run: Tuple[str], wait: bool, int
       python cli.py run -i
 
     MODO PADRÃO:
-    - Executar todas as suítes (em paralelo):
-      python cli.py run --parallel
+    - Executar todas as suítes com análise de falhas:
+      python cli.py run --analyze-failures
 
-    - Executar uma suíte específica:
-      python cli.py run ProcessOrderFlow
-
-    - Executar cenários específicos dentro de uma suíte:
-      python cli.py run ProcessOrderFlow -s cenario_sucesso -s cenario_falha
+    - Executar uma suíte específica em paralelo:
+      python cli.py run ProcessOrderFlow --parallel
     """
     if interactive:
-        _run_interactive_mode(wait, parallel)
+        _run_interactive_mode(wait, parallel, analysis_enabled, analysis_provider)
         return
 
     root_path = Path(TEST_SUITES_DIR)
@@ -495,7 +514,8 @@ def run(suites_to_run: Tuple[str], scenarios_to_run: Tuple[str], wait: bool, int
     if skipped_suites > 0:
         log_message(f"{skipped_suites} suíte(s) pulada(s) por não encontrar a SFN correspondente.")
 
-    _run_and_summarize_tests(test_jobs, parallel, wait)
+    _run_and_summarize_tests(test_jobs, parallel, wait, analysis_enabled, analysis_provider)
+
 
 @cli.command(name="list")
 def list_scenarios():
@@ -524,13 +544,183 @@ def list_scenarios():
         log_message("Nenhum cenário de teste foi encontrado.")
         log_message("Verifique se a estrutura 'tests/NOME_DA_STATE_MACHINE/cases/*.json' existe.")
 
-# --- AI-Powered Generation (unchanged) ---
+# --- AI-Powered Generation & Analysis ---
+
+def _get_llm_instance(provider_name: str, config: Dict[str, Any]):
+    """Initializes and returns a LangChain LLM instance based on the provider."""
+    try:
+        from langchain_openai import OpenAI, AzureChatOpenAI
+        from langchain_google_genai import GoogleGenerativeAI
+        from langchain_groq import ChatGroq
+        from langchain_anthropic import ChatAnthropic
+    except ImportError:
+        log_message(
+            "Erro: Para usar a funcionalidade de IA, instale as dependências:\n"
+            "pip install pyyaml langchain langchain-openai langchain-google-genai langchain-groq langchain-anthropic",
+            level="ERROR", err=True
+        )
+        return None
+
+    provider_name = provider_name or config.get('provider')
+    log_message(f"Usando provedor de IA: {provider_name}")
+
+    if provider_name == 'openai':
+        api_key = config.get('api_key') or os.getenv('OPENAI_API_KEY')
+        if not api_key:
+            log_message("Erro: Chave de API da OpenAI não encontrada. Defina em 'config.yaml' ou na variável de ambiente OPENAI_API_KEY.", level="ERROR", err=True)
+            return None
+        return OpenAI(temperature=0.2, max_tokens=2048, api_key=api_key)
+    
+    elif provider_name == 'azure':
+        required_keys = ['api_key', 'endpoint', 'deployment_name', 'api_version']
+        if not all(key in config for key in required_keys):
+            log_message(f"Erro: Para o provedor Azure, as chaves {required_keys} são necessárias em '{CONFIG_FILE}'.", level="ERROR", err=True)
+            return None
+        return AzureChatOpenAI(
+            temperature=0.2,
+            max_tokens=2048,
+            openai_api_key=config['api_key'],
+            azure_endpoint=config['endpoint'],
+            deployment_name=config['deployment_name'],
+            openai_api_version=config['api_version']
+        )
+    
+    elif provider_name == 'github':
+        token = os.getenv("GITHUB_TOKEN")
+        if not token:
+            log_message("Erro: A variável de ambiente GITHUB_TOKEN é necessária para o provedor 'github'.", level="ERROR", err=True)
+            return None
+        
+        # Use defaults from the user's snippet, but allow overrides from config.yaml
+        endpoint = config.get('endpoint', "https://models.github.ai/inference")
+        model_name = config.get('model_name', "deepseek/DeepSeek-V3-0324")
+        api_version = config.get('api_version', "2024-05-01-preview")
+
+        return AzureChatOpenAI(
+            temperature=0.2,
+            max_tokens=2048,
+            openai_api_key=token,
+            azure_endpoint=endpoint,
+            deployment_name=model_name,
+            openai_api_version=api_version
+        )
+
+    elif provider_name == 'gemini':
+        api_key = config.get('api_key') or os.getenv('GOOGLE_API_KEY')
+        if not api_key:
+            log_message("Erro: Chave de API do Google não encontrada. Defina em 'config.yaml' ou na variável de ambiente GOOGLE_API_KEY.", level="ERROR", err=True)
+            return None
+        return GoogleGenerativeAI(model="gemini-pro", google_api_key=api_key, temperature=0.2)
+
+    elif provider_name == 'groq':
+        api_key = config.get('api_key') or os.getenv('GROQ_API_KEY')
+        if not api_key:
+            log_message("Erro: Chave de API da Groq não encontrada. Defina em 'config.yaml' ou na variável de ambiente GROQ_API_KEY.", level="ERROR", err=True)
+            return None
+        model_name = config.get('model_name', "llama3-8b-8192")
+        return ChatGroq(temperature=0, model_name=model_name, groq_api_key=api_key)
+
+    elif provider_name == 'claude':
+        api_key = config.get('api_key') or os.getenv('ANTHROPIC_API_KEY')
+        if not api_key:
+            log_message("Erro: Chave de API da Anthropic não encontrada. Defina em 'config.yaml' ou na variável de ambiente ANTHROPIC_API_KEY.", level="ERROR", err=True)
+            return None
+        model_name = config.get('model_name', "claude-3-sonnet-20240229")
+        return ChatAnthropic(model=model_name, anthropic_api_key=api_key)
+    
+    else:
+        log_message(f"Erro: Provedor de IA '{provider_name}' não é suportado.", level="ERROR", err=True)
+        return None
+
+def _invoke_ai_analysis(scenario_config: Dict, execution_details: Dict, provider: str):
+    """Analyzes a failed test run using an AI."""
+    log_message(click.style("--- Análise de Falha por IA Ativada ---", fg='magenta', bold=True))
+    
+    config = load_ai_config(provider)
+    if not config:
+        log_message("Não foi possível carregar a configuração de IA para análise. Pulando.", level="WARNING")
+        return
+
+    provider_name = provider or config.get('default_provider')
+    provider_config = config.get('providers', {}).get(provider_name, {})
+    llm = _get_llm_instance(provider_name, provider_config)
+
+    if not llm:
+        log_message("Não foi possível inicializar o modelo de IA para análise. Pulando.", level="WARNING")
+        return
+
+    from langchain_core.prompts import PromptTemplate
+
+    prompt = PromptTemplate(
+        input_variables=["scenario_input", "expected_result", "actual_error", "actual_cause"],
+        template="""
+Você é um engenheiro de software sênior e especialista em AWS. Sua tarefa é analisar a falha de um teste E2E de uma Step Function.
+
+**Contexto do Teste:**
+Um teste automatizado foi executado com o seguinte input e expectativas:
+
+- **Input Enviado:**
+```json
+{scenario_input}
+```
+
+- **Resultado Esperado:**
+```json
+{expected_result}
+```
+
+**Resultado da Falha:**
+O teste falhou com os seguintes detalhes da execução na AWS:
+
+- **Tipo de Erro:** {actual_error}
+- **Causa da Falha:**
+```
+{actual_cause}
+```
+
+**Sua Análise:**
+Com base nos dados acima, forneça uma análise concisa da falha.
+
+1.  **Diagnóstico Provável:** Qual a causa raiz mais provável do problema? Seja direto e técnico.
+2.  **Pontos de Verificação:** Quais são os 2 ou 3 pontos principais que o desenvolvedor deve investigar para corrigir o problema? (ex: "Verificar a permissão (IAM Role) da Lambda X", "Analisar os logs da Lambda Y em busca do erro Z", "Confirmar se o formato do evento para o EventBridge está correto").
+3.  **Possível Solução:** Se a causa for óbvia, sugira uma possível solução ou um trecho de código para correção.
+
+Seja claro, objetivo e forneça insights práticos para acelerar a depuração.
+"""
+    )
+
+    scenario_input = json.dumps(scenario_config, indent=2)
+    expected_result = "Sucesso com output específico" if "expected" in scenario_config else f"Falha controlada com erro '{scenario_config.get('error', {}).get('Error')}'"
+    actual_error = execution_details.get('error', 'N/A')
+    actual_cause = execution_details.get('cause', 'N/A')
+
+    chain = prompt | llm
+    
+    log_message(click.style("A IA está analisando a falha...", fg='magenta'))
+    try:
+        response = chain.invoke({
+            "scenario_input": scenario_input,
+            "expected_result": expected_result,
+            "actual_error": actual_error,
+            "actual_cause": actual_cause
+        })
+        
+        response_content = response if isinstance(response, str) else response.content
+        
+        log_message(click.style("--- Análise da IA ---", fg='magenta', bold=True))
+        log_message(response_content)
+        log_message(click.style("---------------------", fg='magenta', bold=True))
+
+    except Exception as e:
+        log_message(f"Erro ao invocar a IA para análise: {e}", level="ERROR", err=True)
+
+
 def load_ai_config(provider_name: str = None):
     """Carrega as configurações de IA de um arquivo config.yaml."""
     config_path = Path(CONFIG_FILE)
     if not config_path.exists():
         log_message(f"Aviso: Arquivo de configuração '{CONFIG_FILE}' não encontrado. Usando apenas variáveis de ambiente para OpenAI.", level="WARNING")
-        return {"provider": provider_name or "openai"}
+        return {"provider": provider_name or "openai", "providers": {}}
 
     with open(config_path, 'r', encoding='utf-8') as f:
         try:
@@ -539,74 +729,98 @@ def load_ai_config(provider_name: str = None):
             log_message(f"Erro ao ler o arquivo de configuração '{CONFIG_FILE}': {e}", level="ERROR", err=True)
             return None
 
-    if not provider_name:
-        provider_name = config.get('default_provider')
-        if not provider_name:
-            log_message(f"Erro: 'default_provider' não definido em '{CONFIG_FILE}' e nenhum provedor foi especificado via --provider.", level="ERROR", err=True)
-            return None
+    if not provider_name and 'default_provider' not in config:
+        log_message(f"Erro: 'default_provider' não definido em '{CONFIG_FILE}' e nenhum provedor foi especificado via --provider.", level="ERROR", err=True)
+        return None
+    
+    # Ensure providers key exists
+    if 'providers' not in config:
+        config['providers'] = {}
 
-    provider_config = config.get('providers', {}).get(provider_name, {})
-    provider_config['provider'] = provider_name
-    return provider_config
+    return config
 
-def scenarios_generate(projeto_path: str, provider: str = None):
-    """Gera cenários de teste com IA usando LangChain."""
+def _select_context_files(project_path: str) -> List[Path]:
+    """Interactively prompts the user to select files and folders for the AI context."""
+    if not questionary:
+        log_message("Erro: O modo interativo requer a biblioteca 'questionary'.", level="ERROR", err=True)
+        log_message("Instale com: pip install questionary", level="ERROR", err=True)
+        sys.exit(1)
+
+    p_path = Path(project_path)
+    # List all files, ignoring common noise like .git, __pycache__, etc.
+    all_files = [
+        f.relative_to(p_path) for f in p_path.rglob('*') 
+        if f.is_file() and not any(part in f.parts for part in ['.git', '__pycache__', 'node_modules', '.venv'])
+    ]
+    
+    # Sort files to ensure consistent ordering
+    all_files.sort()
+
     try:
-        from langchain_openai import OpenAI, AzureChatOpenAI
-        from langchain_google_genai import GoogleGenerativeAI
-        from langchain_core.prompts import PromptTemplate
-        from langchain_core.messages import AIMessage
-    except ImportError:
-        log_message(
-            "Erro: Para usar esta funcionalidade, instale as dependências de IA:\n"
-            "pip install pyyaml langchain langchain-openai langchain-google-genai",
-            level="ERROR", err=True
-        )
+        selected_files_str = questionary.checkbox(
+            'Selecione os arquivos para incluir no contexto da IA (use a barra de espaço):',
+            choices=[str(f) for f in all_files]
+        ).ask()
+
+        if not selected_files_str:
+            return []
+
+        return [p_path / f for f in selected_files_str]
+
+    except (KeyboardInterrupt, TypeError):
+        log_message("\nSeleção de contexto cancelada.", level="INFO")
         return []
 
+def scenarios_generate(projeto_path: str, provider: str = None, interactive: bool = False):
+    """Gera cenários de teste com IA usando LangChain."""
     config = load_ai_config(provider)
     if not config:
         return []
 
-    llm = None
-    provider_name = config.get('provider')
-    log_message(f"Usando provedor de IA: {provider_name}")
+    # If a specific provider is passed, use it. Otherwise, use the default.
+    provider_name = provider or config.get('default_provider')
+    provider_config = config.get('providers', {}).get(provider_name, {})
 
-    # Configure LLM based on provider
-    if provider_name == 'openai':
-        api_key = config.get('api_key') or os.getenv('OPENAI_API_KEY')
-        if not api_key:
-            log_message("Erro: Chave de API da OpenAI não encontrada. Defina em 'config.yaml' ou na variável de ambiente OPENAI_API_KEY.", level="ERROR", err=True)
-            return []
-        llm = OpenAI(temperature=0.2, max_tokens=2048, api_key=api_key)
-    elif provider_name == 'azure':
-        pass 
-    elif provider_name == 'gemini':
-        api_key = config.get('api_key') or os.getenv('GOOGLE_API_KEY')
-        if not api_key:
-            log_message("Erro: Chave de API do Google não encontrada. Defina em 'config.yaml' ou na variável de ambiente GOOGLE_API_KEY.", level="ERROR", err=True)
-            return []
-        llm = GoogleGenerativeAI(model="gemini-pro", google_api_key=api_key, temperature=0.2)
-    else:
-        log_message(f"Erro: Provedor de IA '{provider_name}' não é suportado.", level="ERROR", err=True)
+    llm = _get_llm_instance(provider_name, provider_config)
+    if not llm:
         return []
 
-    context_files = []
-    for root, _, files in os.walk(projeto_path):
-        for f in files:
-            if f.endswith(('.py', '.yaml', '.json', '.ts', '.js')):
-                try:
-                    with open(os.path.join(root, f), 'r', encoding='utf-8') as file_content:
-                        context_files.append(f"--- File: {f} ---\n{file_content.read(2000)}\n")
-                except:
-                    pass 
+    from langchain_core.prompts import PromptTemplate
     
-    context = "\n".join(context_files)
+    file_paths_for_context = []
+    if interactive:
+        file_paths_for_context = _select_context_files(projeto_path)
+        if not file_paths_for_context:
+            log_message("Nenhum arquivo selecionado para o contexto. Encerrando.", level="WARNING")
+            return []
+    else:
+        # Default behavior: grab all relevant files
+        for root, _, files in os.walk(projeto_path):
+            # Exclude common noise directories
+            if any(part in root for part in ['.git', '__pycache__', 'node_modules', '.venv']):
+                continue
+            for f in files:
+                if f.endswith(('.py', '.yaml', '.yml', '.json', '.ts', '.js', 'requirements.txt', 'package.json', 'Dockerfile', '.md')):
+                    file_paths_for_context.append(Path(root) / f)
+
+    context_parts = []
+    log_message("Construindo contexto com os seguintes arquivos:")
+    for file_path in file_paths_for_context:
+        try:
+            relative_path = file_path.relative_to(projeto_path)
+            log_message(f"  - {relative_path}")
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as file_content:
+                context_parts.append(f"--- File: {relative_path} ---\n{file_content.read(4000)}\n") # Increased limit slightly
+        except Exception as e:
+            log_message(f"Não foi possível ler o arquivo {file_path}: {e}", level="WARNING")
+            
+    context = "\n".join(context_parts)
+    
     prompt = PromptTemplate(
         input_variables=["contexto"],
         template="""
 Você é um especialista em testes de software (QA) criando cenários de teste para um sistema na AWS.
-Com base no contexto do projeto fornecido abaixo, gere uma lista de até 5 cenários de teste.
+Com base no contexto do projeto fornecido abaixo, gere uma lista de cenários de teste com a máxima cobertura.
 
 Contexto do Projeto:
 {contexto}
@@ -622,25 +836,32 @@ Sua resposta DEVE ser um único e válido array JSON. NÃO inclua nenhum texto a
     )
     
     chain = prompt | llm
+    log_message(click.style("Enviando requisição para a IA para gerar cenários...", fg='magenta'))
     response = chain.invoke({"contexto": context})
     response_content = response if isinstance(response, str) else response.content
     
     try:
-        clean_response = response_content.strip().removeprefix("```json").removesuffix("```").strip()
-        scenarios = json.loads(clean_response)
-        if not isinstance(scenarios, list):
-            raise json.JSONDecodeError("A resposta da IA não é uma lista JSON.", clean_response, 0)
-        return scenarios
-    except json.JSONDecodeError as e:
-        log_message("Falha ao interpretar resposta da IA como JSON.", level="ERROR", err=True)
+        # Robust JSON extraction
+        start_index = response_content.find('[')
+        end_index = response_content.rfind(']')
+        if start_index != -1 and end_index != -1 and end_index > start_index:
+            json_str = response_content[start_index : end_index + 1]
+            scenarios = json.loads(json_str)
+            if not isinstance(scenarios, list):
+                 raise json.JSONDecodeError("O JSON extraído não é uma lista.", json_str, 0)
+            return scenarios
+        raise ValueError("Nenhum array JSON válido foi encontrado na resposta da IA.")
+    except (json.JSONDecodeError, ValueError) as e:
+        log_message("Falha ao extrair ou interpretar o JSON da resposta da IA.", level="ERROR", err=True)
         log_message(f"Erro: {e}", level="DEBUG")
         log_message("Resposta bruta recebida:\n" + response_content, level="DEBUG")
         return []
 
 @cli.command()
 @click.argument('project_path', type=click.Path(exists=True, file_okay=False))
-@click.option('--provider', default=None, help='Provedor de IA a ser usado (ex: openai, gemini).')
-def generate(project_path, provider):
+@click.option('--provider', default=None, help='Provedor de IA a ser usado (ex: openai, gemini, azure, groq, claude, github).')
+@click.option('--interactive', '-i', is_flag=True, help='Selecionar interativamente os arquivos de contexto para a IA.')
+def generate(project_path, provider, interactive):
     """
     Gera cenários de teste para um projeto usando IA.
 
@@ -648,7 +869,7 @@ def generate(project_path, provider):
     O nome do diretório será usado como o nome da State Machine alvo.
     """
     log_message(f"Gerando cenários para o projeto em '{project_path}'...")
-    scenarios = scenarios_generate(project_path, provider=provider)
+    scenarios = scenarios_generate(project_path, provider=provider, interactive=interactive)
     if not scenarios:
         log_message("Nenhum cenário foi gerado.", level="WARNING")
         return
@@ -660,14 +881,26 @@ def generate(project_path, provider):
 
     log_message(click.style(f"\nCenários gerados para a suíte '{suite_name}':", bold=True))
     for i, scenario_data in enumerate(scenarios):
-        desc_slug = scenario_data.get("description", f"cenario_{i+1}").lower().replace(" ", "_")
+        desc = scenario_data.get("description", f"cenario_{i+1}")
+        # Sanitize description for use as a filename
+        desc_slug = desc.lower().replace(" ", "_")
         filename = "".join(c for c in desc_slug if c.isalnum() or c == '_')[:50] + ".json"
         filepath = cases_dir / filename
 
+        # Prepare the final JSON content for the file
+        file_content = {
+            "description": desc,
+            "input": scenario_data.get("input", {}),
+        }
+        if "expected" in scenario_data:
+            file_content["expected"] = scenario_data["expected"]
+        if "error" in scenario_data:
+            file_content["error"] = scenario_data["error"]
+
         with open(filepath, "w", encoding="utf-8") as f:
-            json.dump(scenario_data, f, indent=2, ensure_ascii=False)
+            json.dump(file_content, f, indent=2, ensure_ascii=False)
         
-        click.echo(f"- {scenario_data.get('description')}")
+        click.echo(f"- {desc}")
         click.echo(f"  └─ Salvo em: {filepath}")
 
     log_message(f"\n{len(scenarios)} cenários foram salvos com sucesso em '{cases_dir}'.")

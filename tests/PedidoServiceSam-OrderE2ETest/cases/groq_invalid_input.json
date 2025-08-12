@@ -1,0 +1,21 @@
+{
+    "description": "Test failed order creation due to invalid input",
+    "input": {
+      "items": [
+        {
+          "nome": "Item 1",
+          "preco_unitario": "invalid",
+          "quantidade": 2
+        }
+      ],
+      "clienteId": "client-1",
+      "enderecoEntrega": "endereco-1",
+      "paymentMethod": "CARTAO_CREDITO"
+    },
+    "expected": {
+      "statusCode": 400,
+      "body": {
+        "message": "Requisição inválida: Corpo deve ser um JSON válido."
+      }
+    }
+  }

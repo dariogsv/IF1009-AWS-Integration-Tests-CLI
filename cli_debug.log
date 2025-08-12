@@ -4897,3 +4897,780 @@ Operação cancelada pelo usuário.
 [2025-08-12 16:59:34] [INFO] Testes Falharam: 5
 [2025-08-12 16:59:34] [INFO] --------------------------
 
+[2025-08-12 17:27:19] [INFO] Buscando ARN para a State Machine com nome exato: 'PedidoServiceSam-OrderE2ETest'...
+[2025-08-12 17:27:19] [INFO] State Machine encontrada na AWS: PedidoServiceSam-OrderE2ETest (arn:aws:states:us-east-1:201383159504:stateMachine:PedidoServiceSam-OrderE2ETest)
+[2025-08-12 17:27:24] [INFO] Executando testes em modo SEQUENCIAL.
+[2025-08-12 17:27:24] [INFO] Executando cenário: borda-pedido-sem-itens
+[2025-08-12 17:27:24] [INFO] ID da Execução do Teste: f6589163-ff21-4f10-9432-6f3caa7d7eb0
+[2025-08-12 17:27:24] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-f6589163-20250812172724
+[2025-08-12 17:27:24] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-f6589163-20250812172724
+[2025-08-12 17:27:24] [INFO] Aguardando a conclusão do teste 'borda-pedido-sem-itens'...
+[2025-08-12 17:27:27] [INFO] 
+--- Resultados do Teste: borda-pedido-sem-itens ---
+[2025-08-12 17:27:27] [INFO] Execução: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:borda-pedido-sem-itens-f6589163-20250812172724
+[2025-08-12 17:27:27] [INFO] Duração da Execução SFN: 2.05 segundos
+[2025-08-12 17:27:27] [DEBUG] Output completo da SFN: {
+  "description": "Cen\u00e1rio de borda com um dicion\u00e1rio de itens vazio. A valida\u00e7\u00e3o atual permite isso.",
+  "input": {
+    "items": {},
+    "clienteId": "cliente-d6e0-523a-7700",
+    "enderecoEntrega": "Pra\u00e7a do Pedido Vazio, s/n",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  },
+  "testRunId": "f6589163-ff21-4f10-9432-6f3caa7d7eb0",
+  "apiResult": {
+    "Headers": {
+      "date": [
+        "Tue, 12 Aug 2025 20:27:28 GMT"
+      ],
+      "x-amz-cf-pop": [
+        "IAD89-C3"
+      ],
+      "content-length": [
+        "162"
+      ],
+      "x-amz-apigw-id": [
+        "PNaDZGqkoAMEqWQ="
+      ],
+      "x-amzn-trace-id": [
+        "Root=1-689ba3ae-243d62cf7374e4b60d75125e;Parent=151ce3432b273b90;Sampled=0;Lineage=1:40d87d23:0"
+      ],
+      "x-amzn-requestid": [
+        "1e2c5ab0-2c6e-4752-957d-de2349d250ad"
+      ],
+      "content-type": [
+        "application/json"
+      ],
+      "x-cache": [
+        "Miss from cloudfront"
+      ],
+      "x-amz-cf-id": [
+        "WFp3m_TcYJ6GXzzYhKvwYk2qcZ-bQpTilJKUhK4KqQGzfj8phlZ71A=="
+      ],
+      "via": [
+        "1.1 077b94dab77b8114aebf503be197d7d8.cloudfront.net (CloudFront)"
+      ]
+    },
+    "ResponseBody": {
+      "message": "Pedido processado com sucesso!",
+      "pedidoId": "1214cbaa-4e1f-4104-93b4-2cc3a45929ab",
+      "timestamp": "2025-08-12T20:27:28.250419",
+      "status": "PENDENTE"
+    },
+    "StatusCode": 200,
+    "StatusText": "OK"
+  },
+  "verificationData": {
+    "Item": {
+      "total": {
+        "N": "0"
+      },
+      "pedidoId": {
+        "S": "1214cbaa-4e1f-4104-93b4-2cc3a45929ab"
+      },
+      "clienteId": {
+        "S": "cliente-d6e0-523a-7700"
+      },
+      "enderecoEntrega": {
+        "S": "Pra\u00e7a do Pedido Vazio, s/n"
+      },
+      "paymentMethod": {
+        "S": "PIX"
+      },
+      "items": {
+        "M": {}
+      },
+      "status": {
+        "S": "PENDENTE"
+      },
+      "timestamp": {
+        "S": "2025-08-12T20:27:28.250419"
+      }
+    },
+    "SdkHttpMetadata": {
+      "AllHttpHeaders": {
+        "Server": [
+          "Server"
+        ],
+        "Connection": [
+          "keep-alive"
+        ],
+        "x-amzn-RequestId": [
+          "DUL9EQEH588ITD1LVM3CJ8B993VV4KQNSO5AEMVJF66Q9ASUAAJG"
+        ],
+        "x-amz-crc32": [
+          "4030086334"
+        ],
+        "Content-Length": [
+          "299"
+        ],
+        "Date": [
+          "Tue, 12 Aug 2025 20:27:28 GMT"
+        ],
+        "Content-Type": [
+          "application/x-amz-json-1.0"
+        ]
+      },
+      "HttpHeaders": {
+        "Connection": "keep-alive",
+        "Content-Length": "299",
+        "Content-Type": "application/x-amz-json-1.0",
+        "Date": "Tue, 12 Aug 2025 20:27:28 GMT",
+        "Server": "Server",
+        "x-amz-crc32": "4030086334",
+        "x-amzn-RequestId": "DUL9EQEH588ITD1LVM3CJ8B993VV4KQNSO5AEMVJF66Q9ASUAAJG"
+      },
+      "HttpStatusCode": 200
+    },
+    "SdkResponseMetadata": {
+      "RequestId": "DUL9EQEH588ITD1LVM3CJ8B993VV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  }
+}
+[2025-08-12 17:27:27] [INFO] Status AWS: SUCCEEDED
+[2025-08-12 17:27:27] [INFO] --- Validação do Cenário ---
+[2025-08-12 17:27:27] [INFO] Validação bem-sucedida: Output corresponde ao esperado.
+[2025-08-12 17:27:27] [INFO] Resultado Final: PASSOU ✅
+-----------------------------------------
+
+[2025-08-12 17:27:27] [INFO] Executando cenário: cenário_de_borda_com_'enderecoentrega'_vazio
+[2025-08-12 17:27:28] [INFO] ID da Execução do Teste: a57be485-6c88-4852-be8d-cbbe925211ca
+[2025-08-12 17:27:28] [INFO] ARN da Execução SFN: arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-a57be485-20250812172727
+[2025-08-12 17:27:28] [INFO] Link para o console AWS: https://console.aws.amazon.com/states/home?#/executions/details/arn:aws:states:us-east-1:201383159504:execution:PedidoServiceSam-OrderE2ETest:cenário-de-borda-com-'enderecoentrega'-vazio-a57be485-20250812172727
+[2025-08-12 17:27:28] [INFO] Aguardando a conclusão do teste 'cenário_de_borda_com_'enderecoentrega'_vazio'...
+[2025-08-12 17:27:29] [INFO] 
+Operação cancelada pelo usuário.
+[2025-08-12 17:30:47] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:30:51] [ERROR] Erro: Para usar a funcionalidade de IA, instale as dependências:
+pip install pyyaml langchain langchain-openai langchain-google-genai langchain-groq langchain-anthropic
+[2025-08-12 17:30:51] [WARNING] Nenhum cenário foi gerado.
+[2025-08-12 17:33:14] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:33:16] [INFO] Usando provedor de IA: grok
+[2025-08-12 17:33:16] [ERROR] Erro: Provedor de IA 'grok' não é suportado.
+[2025-08-12 17:33:16] [WARNING] Nenhum cenário foi gerado.
+[2025-08-12 17:33:31] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:33:34] [INFO] Usando provedor de IA: grok
+[2025-08-12 17:33:34] [ERROR] Erro: Provedor de IA 'grok' não é suportado.
+[2025-08-12 17:33:34] [WARNING] Nenhum cenário foi gerado.
+[2025-08-12 17:33:57] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:33:59] [INFO] Usando provedor de IA: groq
+[2025-08-12 17:37:02] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:37:04] [INFO] Usando provedor de IA: groq
+[2025-08-12 17:37:04] [INFO] Construindo contexto com os seguintes arquivos:
+[2025-08-12 17:37:04] [INFO]   - cli.py
+[2025-08-12 17:37:04] [INFO]   - config.yaml
+[2025-08-12 17:37:04] [INFO]   - requirements.txt
+[2025-08-12 17:37:04] [INFO]   - template.yaml
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\adl_nested_template.yaml
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\template.yaml
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\ProcessaPedidoFunction\app.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\requirements.txt
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\typing_extensions.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\annotated_types\test_cases.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\annotated_types\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\aliases.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\alias_generators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\annotated_handlers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\class_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\color.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\dataclasses.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\datetime_parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\env_settings.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\errors.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\error_wrappers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\fields.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\functional_serializers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\functional_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\generics.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\json.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\json_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\main.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\mypy.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\networks.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\root_model.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\tools.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\types.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\type_adapter.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\typing.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\validate_call_decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\version.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\warnings.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_migration.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\deprecated\class_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\deprecated\config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\deprecated\copy_internals.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\deprecated\decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\deprecated\json.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\deprecated\parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\deprecated\tools.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\deprecated\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\experimental\arguments_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\experimental\pipeline.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\experimental\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\plugin\_loader.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\plugin\_schema_validator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\plugin\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\annotated_types.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\class_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\color.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\dataclasses.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\datetime_parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\env_settings.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\errors.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\error_wrappers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\fields.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\generics.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\json.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\main.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\mypy.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\networks.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\tools.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\types.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\typing.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\version.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\_hypothesis_plugin.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\v1\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_core_metadata.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_core_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_dataclasses.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_decorators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_decorators_v1.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_discriminated_union.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_docs_extraction.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_fields.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_forward_ref.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_generate_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_generics.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_git.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_import_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_internal_dataclass.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_known_annotated_metadata.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_mock_val_ser.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_model_construction.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_namespace_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_repr.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_schema_gather.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_schema_generation_shared.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_serializers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_signature.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_typing_extra.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_validate_call.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic\_internal\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic_core\core_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\pydantic_core\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\typing_inspection\introspection.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\typing_inspection\typing_objects.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\auto-dependency-layer\PydanticLayer\python\typing_inspection\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\template.yaml
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\ProcessaPedidoFunction\app.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\requirements.txt
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\typing_extensions.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\annotated_types\test_cases.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\annotated_types\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\aliases.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\alias_generators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\annotated_handlers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\class_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\color.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\dataclasses.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\datetime_parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\env_settings.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\errors.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\error_wrappers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\fields.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\functional_serializers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\functional_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\generics.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\json.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\json_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\main.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\mypy.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\networks.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\root_model.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\tools.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\types.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\type_adapter.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\typing.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\validate_call_decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\version.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\warnings.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_migration.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\deprecated\class_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\deprecated\config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\deprecated\copy_internals.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\deprecated\decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\deprecated\json.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\deprecated\parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\deprecated\tools.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\deprecated\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\experimental\arguments_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\experimental\pipeline.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\experimental\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\plugin\_loader.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\plugin\_schema_validator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\plugin\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\annotated_types.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\class_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\color.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\dataclasses.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\datetime_parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\env_settings.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\errors.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\error_wrappers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\fields.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\generics.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\json.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\main.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\mypy.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\networks.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\tools.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\types.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\typing.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\version.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\_hypothesis_plugin.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\v1\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_core_metadata.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_core_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_dataclasses.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_decorators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_decorators_v1.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_discriminated_union.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_docs_extraction.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_fields.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_forward_ref.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_generate_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_generics.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_git.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_import_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_internal_dataclass.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_known_annotated_metadata.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_mock_val_ser.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_model_construction.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_namespace_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_repr.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_schema_gather.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_schema_generation_shared.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_serializers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_signature.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_typing_extra.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_validate_call.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic\_internal\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic_core\core_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\pydantic_core\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\typing_inspection\introspection.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\typing_inspection\typing_objects.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\build\PydanticLayer\python\typing_inspection\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\typing_extensions.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\annotated_types\test_cases.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\annotated_types\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\aliases.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\alias_generators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\annotated_handlers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\class_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\color.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\dataclasses.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\datetime_parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\env_settings.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\errors.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\error_wrappers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\fields.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\functional_serializers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\functional_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\generics.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\json.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\json_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\main.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\mypy.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\networks.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\root_model.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\tools.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\types.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\type_adapter.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\typing.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\validate_call_decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\version.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\warnings.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_migration.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\deprecated\class_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\deprecated\config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\deprecated\copy_internals.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\deprecated\decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\deprecated\json.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\deprecated\parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\deprecated\tools.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\deprecated\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\experimental\arguments_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\experimental\pipeline.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\experimental\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\plugin\_loader.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\plugin\_schema_validator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\plugin\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\annotated_types.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\class_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\color.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\dataclasses.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\datetime_parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\decorator.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\env_settings.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\errors.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\error_wrappers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\fields.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\generics.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\json.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\main.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\mypy.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\networks.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\parse.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\tools.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\types.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\typing.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\version.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\_hypothesis_plugin.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\v1\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_config.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_core_metadata.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_core_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_dataclasses.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_decorators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_decorators_v1.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_discriminated_union.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_docs_extraction.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_fields.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_forward_ref.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_generate_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_generics.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_git.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_import_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_internal_dataclass.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_known_annotated_metadata.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_mock_val_ser.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_model_construction.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_namespace_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_repr.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_schema_gather.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_schema_generation_shared.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_serializers.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_signature.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_typing_extra.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_utils.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_validate_call.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\_validators.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic\_internal\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic_core\core_schema.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\pydantic_core\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\typing_inspection\introspection.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\typing_inspection\typing_objects.py
+[2025-08-12 17:37:04] [INFO]   - .aws-sam\deps\98dd5e01-9d75-46b1-a284-c2258ba5f0e4\typing_inspection\__init__.py
+[2025-08-12 17:37:04] [INFO]   - .vscode\settings.json
+[2025-08-12 17:37:04] [INFO]   - layers\pydantic_layer\requirements.txt
+[2025-08-12 17:37:04] [INFO]   - src\processa_pedido\app.py
+[2025-08-12 17:37:04] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\order_e2e_test.asl.json
+[2025-08-12 17:37:04] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\cases\borda-pedido-sem-itens.json
+[2025-08-12 17:37:04] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\cases\cenário_de_borda_com_'enderecoentrega'_vazio.json
+[2025-08-12 17:37:04] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\cases\falha-campo-obrigatorio-ausente.json
+[2025-08-12 17:37:04] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\cases\falha-dados-invalidos.json
+[2025-08-12 17:37:04] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\cases\falha_com_item_sem_o_campo_'nome'.json
+[2025-08-12 17:37:04] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\cases\falha_com_tipo_de_dado_incorreto_para_o_campo_'items'.json
+[2025-08-12 17:37:04] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\cases\sucesso-pedido-completo.json
+[2025-08-12 17:37:19] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:37:21] [INFO] Usando provedor de IA: groq
+[2025-08-12 17:38:20] [INFO] Construindo contexto com os seguintes arquivos:
+[2025-08-12 17:38:20] [INFO]   - cli.py
+[2025-08-12 17:38:20] [INFO]   - src\processa_pedido\app.py
+[2025-08-12 17:38:20] [INFO]   - template.yaml
+[2025-08-12 17:38:20] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\order_e2e_test.asl.json
+[2025-08-12 17:42:21] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:42:23] [INFO] Usando provedor de IA: groq
+[2025-08-12 17:42:57] [WARNING] Nenhum arquivo selecionado para o contexto. Encerrando.
+[2025-08-12 17:42:57] [WARNING] Nenhum cenário foi gerado.
+[2025-08-12 17:42:59] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:43:01] [INFO] Usando provedor de IA: groq
+[2025-08-12 17:43:21] [INFO] Construindo contexto com os seguintes arquivos:
+[2025-08-12 17:43:21] [INFO]   - cli.py
+[2025-08-12 17:43:21] [INFO]   - src\processa_pedido\app.py
+[2025-08-12 17:43:21] [INFO]   - template.yaml
+[2025-08-12 17:43:21] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\order_e2e_test.asl.json
+[2025-08-12 17:43:21] [INFO] Enviando requisição para a IA para gerar cenários...
+[2025-08-12 17:43:23] [ERROR] Falha ao interpretar resposta da IA como JSON.
+[2025-08-12 17:43:23] [DEBUG] Erro: Expecting value: line 1 column 1 (char 0)
+[2025-08-12 17:43:23] [DEBUG] Resposta bruta recebida:
+Based on the provided code, I've created 5 test scenarios for the Step Function and Lambda function. Each scenario is a JSON object with the required keys: "description", "input", and "expected".
+
+Here are the test scenarios:
+
+```
+[
+  {
+    "description": "Test successful order creation",
+    "input": {
+      "items": [
+        {
+          "nome": "Item 1",
+          "preco_unitario": 10,
+          "quantidade": 2
+        }
+      ],
+      "clienteId": "client-1",
+      "enderecoEntrega": "endereco-1",
+      "paymentMethod": "CARTAO_CREDITO"
+    },
+    "expected": {
+      "statusCode": 200,
+      "body": {
+        "message": "Pedido processado com sucesso!",
+        "pedidoId": "pedido-1",
+        "timestamp": "2023-03-01T12:00:00",
+        "status": "PENDENTE"
+      }
+    }
+  },
+  {
+    "description": "Test failed order creation due to invalid input",
+    "input": {
+      "items": [
+        {
+          "nome": "Item 1",
+          "preco_unitario": "invalid",
+          "quantidade": 2
+        }
+      ],
+      "clienteId": "client-1",
+      "enderecoEntrega": "endereco-1",
+      "paymentMethod": "CARTAO_CREDITO"
+    },
+    "expected": {
+      "statusCode": 400,
+      "body": {
+        "message": "Requisição inválida: Corpo deve ser um JSON válido."
+      }
+    }
+  },
+  {
+    "description": "Test failed order creation due to DynamoDB error",
+    "input": {
+      "items": [
+        {
+          "nome": "Item 1",
+          "preco_unitario": 10,
+          "quantidade": 2
+        }
+      ],
+      "clienteId": "client-1",
+      "enderecoEntrega": "endereco-1",
+      "paymentMethod": "CARTAO_CREDITO"
+    },
+    "expected": {
+      "statusCode": 500,
+      "body": {
+        "message": "Erro interno do servidor: DynamoDB error"
+      }
+    }
+  },
+  {
+    "description": "Test successful order retrieval",
+    "input": {
+      "pedidoId": "pedido-1"
+    },
+    "expected": {
+      "statusCode": 200,
+      "body": {
+        "pedidoId": "pedido-1",
+        "timestamp": "2023-03-01T12:00:00",
+        "status": "PENDENTE"
+      }
+    }
+  },
+  {
+    "description": "Test failed order retrieval due to invalid pedidoId",
+    "input": {
+      "pedidoId": "invalid-pedidoId"
+    },
+    "expected": {
+      "statusCode": 404,
+      "body": {
+        "message": "Pedido não encontrado"
+      }
+    }
+  }
+]
+```
+[2025-08-12 17:43:23] [WARNING] Nenhum cenário foi gerado.
+[2025-08-12 17:43:37] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:43:39] [INFO] Usando provedor de IA: groq
+[2025-08-12 17:43:49] [INFO] Construindo contexto com os seguintes arquivos:
+[2025-08-12 17:43:49] [INFO]   - cli.py
+[2025-08-12 17:43:49] [INFO]   - src\processa_pedido\app.py
+[2025-08-12 17:43:49] [INFO]   - template.yaml
+[2025-08-12 17:43:49] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\order_e2e_test.asl.json
+[2025-08-12 17:43:49] [INFO] Enviando requisição para a IA para gerar cenários...
+[2025-08-12 17:43:52] [ERROR] Falha ao interpretar resposta da IA como JSON.
+[2025-08-12 17:43:52] [DEBUG] Erro: Expecting value: line 1 column 1 (char 0)
+[2025-08-12 17:43:52] [DEBUG] Resposta bruta recebida:
+Based on the provided code, I've created 5 test scenarios for the Step Function and Lambda function. Each scenario is a JSON object with the required keys: "description", "input", and "expected".
+
+Here are the test scenarios:
+
+```
+[
+  {
+    "description": "Test successful order creation",
+    "input": {
+      "items": [
+        {
+          "nome": "Item 1",
+          "preco_unitario": 10,
+          "quantidade": 2
+        }
+      ],
+      "clienteId": "client-1",
+      "enderecoEntrega": "endereco-1",
+      "paymentMethod": "CARTAO_CREDITO"
+    },
+    "expected": {
+      "statusCode": 200,
+      "body": {
+        "message": "Pedido processado com sucesso!",
+        "pedidoId": "pedido-1",
+        "timestamp": "2023-03-01T12:00:00",
+        "status": "PENDENTE"
+      }
+    }
+  },
+  {
+    "description": "Test failed order creation due to invalid input",
+    "input": {
+      "items": [
+        {
+          "nome": "Item 1",
+          "preco_unitario": "invalid",
+          "quantidade": 2
+        }
+      ],
+      "clienteId": "client-1",
+      "enderecoEntrega": "endereco-1",
+      "paymentMethod": "CARTAO_CREDITO"
+    },
+    "expected": {
+      "statusCode": 400,
+      "body": {
+        "message": "Requisição inválida: Corpo deve ser um JSON válido."
+      }
+    }
+  },
+  {
+    "description": "Test failed order creation due to DynamoDB error",
+    "input": {
+      "items": [
+        {
+          "nome": "Item 1",
+          "preco_unitario": 10,
+          "quantidade": 2
+        }
+      ],
+      "clienteId": "client-1",
+      "enderecoEntrega": "endereco-1",
+      "paymentMethod": "CARTAO_CREDITO"
+    },
+    "expected": {
+      "statusCode": 500,
+      "body": {
+        "message": "Erro interno do servidor: DynamoDB error"
+      }
+    }
+  },
+  {
+    "description": "Test successful order retrieval",
+    "input": {
+      "pedidoId": "pedido-1"
+    },
+    "expected": {
+      "statusCode": 200,
+      "body": {
+        "pedidoId": "pedido-1",
+        "timestamp": "2023-03-01T12:00:00",
+        "status": "PENDENTE"
+      }
+    }
+  },
+  {
+    "description": "Test failed order retrieval due to invalid pedidoId",
+    "input": {
+      "pedidoId": "invalid-pedidoId"
+    },
+    "expected": {
+      "statusCode": 404,
+      "body": {
+        "message": "Pedido não encontrado"
+      }
+    }
+  }
+]
+```
+[2025-08-12 17:43:52] [WARNING] Nenhum cenário foi gerado.
+[2025-08-12 17:57:23] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:57:26] [INFO] Usando provedor de IA: copilot
+[2025-08-12 17:57:26] [ERROR] Erro: Provedor de IA 'copilot' não é suportado.
+[2025-08-12 17:57:26] [WARNING] Nenhum cenário foi gerado.
+[2025-08-12 17:57:49] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:57:51] [INFO] Usando provedor de IA: github
+[2025-08-12 17:57:51] [ERROR] Erro: A variável de ambiente GITHUB_TOKEN é necessária para o provedor 'github'.
+[2025-08-12 17:57:51] [WARNING] Nenhum cenário foi gerado.
+[2025-08-12 17:58:16] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:58:18] [INFO] Usando provedor de IA: github
+[2025-08-12 17:58:18] [ERROR] Erro: A variável de ambiente GITHUB_TOKEN é necessária para o provedor 'github'.
+[2025-08-12 17:58:18] [WARNING] Nenhum cenário foi gerado.
+[2025-08-12 17:58:47] [INFO] Gerando cenários para o projeto em '.'...
+[2025-08-12 17:58:49] [INFO] Usando provedor de IA: github
+[2025-08-12 17:59:10] [INFO] Construindo contexto com os seguintes arquivos:
+[2025-08-12 17:59:10] [INFO]   - cli.py
+[2025-08-12 17:59:10] [INFO]   - src\processa_pedido\app.py
+[2025-08-12 17:59:10] [INFO]   - template.yaml
+[2025-08-12 17:59:10] [INFO]   - tests\PedidoServiceSam-OrderE2ETest\order_e2e_test.asl.json
+[2025-08-12 17:59:10] [INFO] Enviando requisição para a IA para gerar cenários...
