@@ -1,0 +1,16 @@
+{
+  "input": {
+    "items": {
+      "prod-008": {
+        "preco_unitario": 45.0,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-h9i0-44c5-d6e7",
+    "enderecoEntrega": "Rua do Campo Faltante, 303, Bairro da Validação",
+    "paymentMethod": "CARTAO_CREDITO"
+  },
+  "expected": {
+    "statusCode": 400
+  }
+}

@@ -23,6 +23,20 @@ Globals:
     Timeout: 30
 
 Resources:
+  PydanticLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !Sub "${ProjectName}-pydantic-layer"
+      Description: Layer contendo a biblioteca Pydantic.
+      ContentUri: layers/pydantic_layer/
+      RetentionPolicy: Retain
+      CompatibleArchitectures:
+        - arm64
+
+    Metadata:
+      BuildMethod: python3.13
+      BuildArchitecture: arm64
+
   # --- Tabela DynamoDB para o SERVIÇO DE PEDIDOS ---
   PedidosTable:
     Type: AWS::DynamoDB::Table
@@ -50,6 +64,8 @@ Resources:
         - DynamoDBCrudPolicy: # Alterado para Crud para permitir leitura e escrita
             TableName: !Ref PedidosTable
         - AWSLambdaBasicExecutionRole
+      Layers:
+        - !Ref PydanticLayer
       Environment:
         Variables:
           PEDIDOS_TABLE_NAME: !Ref PedidosTable
@@ -60,6 +76,7 @@ Resources:
             Path: /pedidos
             Method: POST
             RestApiId: !Ref PedidoApi
+
 
   # --- API Gateway do SERVIÇO DE PEDIDOS ---
   PedidoApi:
@@ -74,7 +91,7 @@ Resources:
     Properties:
       Name: !Sub "${ProjectName}-OrderE2ETest"
       # Aponta para o arquivo de definição ASL externo.
-      DefinitionUri: tests/order_e2e_test.asl.json
+      DefinitionUri: tests/PedidoServiceSam-OrderE2ETest/order_e2e_test.asl.json
       # Substitui as variáveis no arquivo ASL pelos valores dos recursos.
       DefinitionSubstitutions:
         OrdersTableName: !Ref PedidosTable

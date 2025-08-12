@@ -1,0 +1,18 @@
+{
+  "input": {
+    "items": {
+      "prod-009": {
+        "nome": "Produto com Endereço Vazio",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "cliente-j1k2-55d6-e7f8",
+    "enderecoEntrega": "",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  }
+}

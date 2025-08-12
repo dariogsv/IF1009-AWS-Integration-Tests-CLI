@@ -1,0 +1,18 @@
+{
+  "description": "Cenário de falha onde a quantidade de um item é zero, o que viola a regra 'gt=0'.",
+  "input": {
+    "items": {
+      "prod-003": {
+        "nome": "Webcam Full HD",
+        "preco_unitario": 250.00,
+        "quantidade": 0
+      }
+    },
+    "clienteId": "cliente-c7b1-412f-8811",
+    "enderecoEntrega": "Avenida dos Bugs, 400, Bairro da Validação",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 400
+  }
+}

@@ -1,0 +1,24 @@
+{
+    "description": "Test successful order creation",
+    "input": {
+        "items": [
+            {
+                "nome": "Item 1",
+                "preco_unitario": 10,
+                "quantidade": 2
+            }
+        ],
+        "clienteId": "client-1",
+        "enderecoEntrega": "endereco-1",
+        "paymentMethod": "CARTAO_CREDITO"
+    },
+    "expected": {
+        "statusCode": 200,
+        "body": {
+            "message": "Pedido processado com sucesso!",
+            "pedidoId": "pedido-1",
+            "timestamp": "2023-03-01T12:00:00",
+            "status": "PENDENTE"
+        }
+    }
+}

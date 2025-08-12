@@ -1,0 +1,152 @@
+{
+    "Comment": "Máquina de estados genérica para executar testes de integração E2E. Integrada com o template.yaml.",
+    "StartAt": "ExecuteApiEndpoint",
+    "States": {
+        "ExecuteApiEndpoint": {
+            "Type": "Task",
+            "Comment": "Invoca o endpoint da API com o corpo da requisição do teste.",
+            "Resource": "arn:aws:states:::http:invoke",
+            "Parameters": {
+                "ApiEndpoint": "${ApiEndpointUrl}",
+                "Method": "POST",
+                "Headers": {
+                    "Content-Type": "application/json"
+                },
+                "Authentication": {
+                    "ConnectionArn": "${ConnectionArn}"
+                },
+                "RequestBody.$": "$.input"
+            },
+            "ResultPath": "$.apiResult",
+            "Next": "CheckStatusCode",
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "Next": "TestFailed",
+                    "ResultPath": "$.error"
+                }
+            ]
+        },
+        "CheckStatusCode": {
+            "Type": "Choice",
+            "Comment": "Verifica se o status code da resposta é o esperado.",
+            "Choices": [
+                {
+                    "Variable": "$.apiResult.StatusCode",
+                    "NumericEqualsPath": "$.expected.statusCode",
+                    "Next": "IsSuccessCase"
+                }
+            ],
+            "Default": "Fail_WrongStatusCode"
+        },
+        "IsSuccessCase": {
+            "Type": "Choice",
+            "Comment": "Se o teste for de sucesso (200), verifica o DB. Senão, o teste já passou.",
+            "Choices": [
+                {
+                    "Variable": "$.expected.statusCode",
+                    "NumericEquals": 200,
+                    "Next": "VerifyDataInDynamoDB"
+                }
+            ],
+            "Default": "TestPassed"
+        },
+        "VerifyDataInDynamoDB": {
+            "Type": "Task",
+            "Comment": "Busca o item criado no DynamoDB para verificação.",
+            "Resource": "arn:aws:states:::dynamodb:getItem",
+            "Parameters": {
+                "TableName": "${OrdersTableName}",
+                "Key": {
+                    "pedidoId": {
+                        "S.$": "$.apiResult.ResponseBody.pedidoId"
+                    },
+                    "timestamp": {
+                        "S.$": "$.apiResult.ResponseBody.timestamp"
+                    }
+                }
+            },
+            "ResultPath": "$.verificationData",
+            "Next": "CheckStatusInDb",
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "Next": "TestFailed",
+                    "ResultPath": "$.error"
+                }
+            ]
+        },
+        "CheckStatusInDb": {
+            "Type": "Choice",
+            "Comment": "Verifica se o status do pedido no DB está correto.",
+            "Choices": [
+                {
+                    "And": [
+                        {
+                            "Variable": "$.verificationData.Item.status.S",
+                            "StringEqualsPath": "$.expected.statusInDb"
+                        }
+                    ],
+                    "Next": "CleanUp"
+                }
+            ],
+            "Default": "Construct_WrongDbStatus_Cause"
+        },
+        "CleanUp": {
+            "Type": "Task",
+            "Comment": "Deleta o item de teste criado no DynamoDB (teardown).",
+            "Resource": "arn:aws:states:::dynamodb:deleteItem",
+            "Parameters": {
+                "TableName": "${OrdersTableName}",
+                "Key": {
+                    "pedidoId": {
+                        "S.$": "$.apiResult.ResponseBody.pedidoId"
+                    },
+                    "timestamp": {
+                        "S.$": "$.apiResult.ResponseBody.timestamp"
+                    }
+                }
+            },
+            "ResultPath": null,
+            "Next": "TestPassed",
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "Comment": "Falha na limpeza não deve falhar o teste, apenas registrar.",
+                    "Next": "TestPassed"
+                }
+            ]
+        },
+        "TestPassed": {
+            "Type": "Succeed"
+        },
+        "Fail_WrongStatusCode": {
+            "Type": "Fail",
+            "Error": "AssertionFailed",
+            "CausePath": "$.errorDetails.causeString"
+        },
+        "Construct_WrongDbStatus_Cause": {
+            "Type": "Pass",
+            "Comment": "Constrói a mensagem de erro para status no DB incorreto.",
+            "Parameters": {
+                "causeString.$": "States.Format('DynamoDB status validation failed. Expected: {}, Got: {}', $.expected.statusInDb, $.verificationData.Item.status.S)"
+            },
+            "ResultPath": "$.errorDetails",
+            "Next": "Fail_WrongDbStatus"
+        },
+        "Fail_WrongDbStatus": {
+            "Type": "Fail",
+            "Error": "AssertionFailed",
+            "CausePath": "$.errorDetails.causeString"
+        },
+        "TestFailed": {
+            "Type": "Fail"
+        }
+    }
+}
