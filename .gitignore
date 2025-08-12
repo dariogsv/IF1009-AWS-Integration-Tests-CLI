@@ -18,3 +18,4 @@ pip-wheel-metadata/
 layers/*/python/
 
 config.yaml
+.env
