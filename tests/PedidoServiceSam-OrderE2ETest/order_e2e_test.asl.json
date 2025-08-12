@@ -17,8 +17,8 @@
                 },
                 "RequestBody.$": "$.input"
             },
-            "ResultPath": "$.apiResullt",
-            "Next": "ParseApiResponse",
+            "ResultPath": "$.apiResult",
+            "Next": "CheckStatusCode",
             "Catch": [
                 {
                     "ErrorEquals": [
@@ -28,16 +28,6 @@
                     "ResultPath": "$.error"
                 }
             ]
-        },
-        "ParseApiResponse": {
-            "Type": "Pass",
-            "Comment": "Converte o corpo da resposta da API de string para JSON.",
-            "Parameters": {
-                "ResponseBody.$": "States.StringToJson($.apiResult.ResponseBody)",
-                "StatusCode.$": "$.apiResult.StatusCode"
-            },
-            "ResultPath": "$.apiResult",
-            "Next": "CheckStatusCode"
         },
         "CheckStatusCode": {
             "Type": "Choice",
@@ -49,7 +39,7 @@
                     "Next": "IsSuccessCase"
                 }
             ],
-            "Default": "Construct_WrongStatusCode_Cause"
+            "Default": "Fail_WrongStatusCode"
         },
         "IsSuccessCase": {
             "Type": "Choice",
@@ -72,6 +62,9 @@
                 "Key": {
                     "pedidoId": {
                         "S.$": "$.apiResult.ResponseBody.pedidoId"
+                    },
+                    "timestamp": {
+                        "S.$": "$.apiResult.ResponseBody.timestamp"
                     }
                 }
             },
@@ -112,6 +105,9 @@
                 "Key": {
                     "pedidoId": {
                         "S.$": "$.apiResult.ResponseBody.pedidoId"
+                    },
+                    "timestamp": {
+                        "S.$": "$.apiResult.ResponseBody.timestamp"
                     }
                 }
             },
@@ -129,15 +125,6 @@
         },
         "TestPassed": {
             "Type": "Succeed"
-        },
-        "Construct_WrongStatusCode_Cause": {
-            "Type": "Pass",
-            "Comment": "Constrói a mensagem de erro para status code incorreto.",
-            "Parameters": {
-                "causeString.$": "States.Format('Status code validation failed. Expected: {}, Got: {}', $.expected.statusCode, $.apiResult.StatusCode)"
-            },
-            "ResultPath": "$.errorDetails",
-            "Next": "Fail_WrongStatusCode"
         },
         "Fail_WrongStatusCode": {
             "Type": "Fail",

@@ -1,0 +1,20 @@
+# Define qual provedor usar se nenhum for especificado com a flag --provider
+default_provider: openai
+
+providers:
+  # Configuração para a API da OpenAI
+  openai:
+    # A chave pode ser colocada aqui ou lida da variável de ambiente OPENAI_API_KEY
+    api_key: "k-proj-xPtNW7Jl9YHBdQg4rhHKBu9gB60jPOElD2LHcPvLIIiLhnxVLovzBTkiiaOp7Zd0DFkiFGwmhzT3BlbkFJFmkN_P9qy9x_066sj-bRvvEfULhOLVdsSp4ywhZcfNOgWPtsofD4_1gb5L-s96q2HBze916iwA"
+
+  # Configuração para a API do Google Gemini
+  gemini:
+    # A chave pode ser obtida no Google AI Studio e lida da variável de ambiente GOOGLE_API_KEY
+    api_key: "AIzaSyC9iOQI0XqdMO_DNLmV1onw8ITfh1Ml32s"
+
+  # Configuração para a API do Azure OpenAI
+  azure:
+    api_key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    endpoint: "https://seu-recurso.openai.azure.com/"
+    deployment_name: "seu-deployment-name" # O nome do seu modelo/deployment no Azure
+    api_version: "2023-07-01-preview"

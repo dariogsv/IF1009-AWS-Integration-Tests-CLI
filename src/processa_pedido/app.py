@@ -3,6 +3,7 @@ import json
 import uuid
 import os
 import boto3
+import traceback
 from datetime import datetime
 from typing import Dict, Literal, List
 from pydantic import BaseModel, ValidationError, Field
@@ -15,7 +16,7 @@ table = dynamodb.Table(DYNAMODB_TABLE_NAME)
 class ItemPedido(BaseModel):
     """Define os detalhes de um item, cujo ID é a chave do dicionário."""
     nome: str
-    preco_unitario: float = Field(gt=0, description="O preço deve ser maior que zero")
+    preco_unitario: int = Field(gt=0, description="O preço deve ser maior que zero sem vírgulas")
     quantidade: int = Field(gt=0, description="A quantidade deve ser maior que zero")
 
 class Pedido(BaseModel):
@@ -77,6 +78,7 @@ def lambda_handler(event, context):
 
     except json.JSONDecodeError:
         print("Erro: Corpo da requisição inválido (não é um JSON válido).")
+        traceback.print_exc()
         return {
             'statusCode': 400,
             'body': json.dumps({'message': 'Requisição inválida: Corpo deve ser um JSON válido.'})
@@ -84,6 +86,7 @@ def lambda_handler(event, context):
     except ValidationError as e:
         # Pydantic levanta ValidationError com detalhes sobre os campos inválidos
         print(f"Erro de validação: {e.errors()}")
+        traceback.print_exc()
         return {
             'statusCode': 400, # Bad Request
             'headers': {'Content-Type': 'application/json'},
@@ -91,6 +94,7 @@ def lambda_handler(event, context):
         }
     except Exception as e:
         print(f"Erro inesperado: {e}")
+        traceback.print_exc()
         return {
             'statusCode': 500,
             'body': json.dumps({'message': f'Erro interno do servidor: {str(e)}'})

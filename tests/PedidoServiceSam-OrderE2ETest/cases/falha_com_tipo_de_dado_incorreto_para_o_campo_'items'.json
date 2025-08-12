@@ -1,0 +1,18 @@
+{
+  "input": {
+    "items": [
+      {
+        "id": "prod-010",
+        "nome": "Item em formato de lista",
+        "preco_unitario": 25.0,
+        "quantidade": 1
+      }
+    ],
+    "clienteId": "cliente-l3m4-66e7-f8g9",
+    "enderecoEntrega": "Avenida da Estrutura Inválida, 404",
+    "paymentMethod": "CARTAO_DEBITO"
+  },
+  "expected": {
+    "statusCode": 400
+  }
+}

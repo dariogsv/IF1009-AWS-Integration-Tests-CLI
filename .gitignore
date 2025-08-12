@@ -1,4 +1,4 @@
-# CloudFormation
+# AWS SAM
 .aws-sam/
 
 # Python
@@ -14,5 +14,5 @@ pip-wheel-metadata/
 .coverage
 .pytest_cache/
 
-# Editor
-.vscode/
+# Ignora pastas de dependências de layers
+layers/*/python/
