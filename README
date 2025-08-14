@@ -2,9 +2,8 @@
 
 ## Arquivos de configuração
 
-É preciso criar dois arquivos de configuração:
+É preciso criar o seguinte arquivo de configuração como config.yaml:
 
-### config.yaml
 ```yaml
 # Define qual provedor usar se nenhum for especificado com a flag --provider
 default_provider: openai
