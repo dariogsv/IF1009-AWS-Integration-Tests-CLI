@@ -1,0 +1,20 @@
+{
+  "description": "Cenário 6: Tenta registrar um pedido com preço unitário igual a zero, esperando erro de validação 400.",
+  "input": {
+    "input": {
+      "items": {
+        "item-001": {
+          "nome": "Produto Grátis (Inválido)",
+          "preco_unitario": 0,
+          "quantidade": 1
+        }
+      },
+      "clienteId": "cliente-existente-123",
+      "enderecoEntrega": "Rua da Validação, 2",
+      "paymentMethod": "PIX"
+    },
+    "expected": {
+      "statusCode": 400
+    }
+  }
+}

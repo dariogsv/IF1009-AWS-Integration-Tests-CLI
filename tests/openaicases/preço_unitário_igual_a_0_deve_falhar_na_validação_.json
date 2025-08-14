@@ -1,0 +1,18 @@
+{
+  "description": "Preço unitário igual a 0 deve falhar na validação (400)",
+  "input": {
+    "items": {
+      "SKU-000": {
+        "nome": "Produto Zero",
+        "preco_unitario": 0,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "1",
+    "enderecoEntrega": "Rua A, 10",
+    "paymentMethod": "CARTAO_DEBITO"
+  },
+  "expected": {
+    "statusCode": 400
+  }
+}

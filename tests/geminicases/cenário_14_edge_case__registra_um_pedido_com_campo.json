@@ -1,0 +1,23 @@
+{
+  "description": "Cenário 14: Edge Case - Registra um pedido com campos adicionais não definidos no modelo, que devem ser ignorados.",
+  "input": {
+    "input": {
+      "items": {
+        "item-005": {
+          "nome": "Produto com Campo Extra",
+          "preco_unitario": 1500,
+          "quantidade": 1
+        }
+      },
+      "clienteId": "cliente-existente-123",
+      "enderecoEntrega": "Rua dos Metadados, 42",
+      "paymentMethod": "CARTAO_CREDITO",
+      "campo_extra": "este campo deve ser ignorado",
+      "nota_fiscal": true
+    },
+    "expected": {
+      "statusCode": 200,
+      "dbStatus": "PENDENTE"
+    }
+  }
+}

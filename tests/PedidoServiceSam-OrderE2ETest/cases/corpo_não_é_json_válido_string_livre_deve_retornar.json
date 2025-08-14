@@ -1,0 +1,7 @@
+{
+  "description": "Corpo não é JSON válido (string livre) deve retornar 400",
+  "input": "isto nao eh um json",
+  "expected": {
+    "statusCode": 400
+  }
+}

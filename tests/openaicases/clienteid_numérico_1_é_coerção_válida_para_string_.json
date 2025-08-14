@@ -1,0 +1,18 @@
+{
+  "description": "clienteId numérico (1) é coerção válida para string, mas deve falhar com 502 na checagem de cliente",
+  "input": {
+    "items": {
+      "SKU-CLI": {
+        "nome": "Produto Cliente",
+        "preco_unitario": 1300,
+        "quantidade": 1
+      }
+    },
+    "clienteId": 1,
+    "enderecoEntrega": "Rua L, 120",
+    "paymentMethod": "CARTAO_DEBITO"
+  },
+  "expected": {
+    "statusCode": 502
+  }
+}

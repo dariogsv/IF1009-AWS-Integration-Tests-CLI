@@ -1,0 +1,11 @@
+{
+  "description": "Ausência do campo items deve falhar na validação (400)",
+  "input": {
+    "clienteId": "1",
+    "enderecoEntrega": "Rua H, 80",
+    "paymentMethod": "CARTAO_CREDITO"
+  },
+  "expected": {
+    "statusCode": 400
+  }
+}

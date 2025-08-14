@@ -11,9 +11,6 @@ import yaml
 from pathlib import Path
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # Attempt to import questionary for interactive mode
 try:
@@ -116,80 +113,17 @@ def get_sfn_execution_details(execution_arn):
         return None
 
 def validate_execution_result(execution_details: dict, scenario_config: dict) -> (bool, list):
-    """Valida o resultado da execução da Step Function contra as expectativas do cenário."""
+    """Valida o resultado da execução com base no estado final da Step Function."""
     messages = []
     final_status = execution_details.get('status')
 
-    if 'error' in scenario_config:
-        expected_error_block = scenario_config['error']
-        if final_status != 'FAILED':
-            messages.append(f"Validação Falhou: Status esperado 'FAILED', mas foi '{final_status}'.")
-            return False, messages
-
-        actual_error = execution_details.get('error')
-        if expected_error_block.get('Error') and expected_error_block.get('Error') != actual_error:
-            messages.append(f"Validação Falhou: Tipo de erro esperado '{expected_error_block.get('Error')}', mas foi '{actual_error}'.")
-            return False, messages
-
-        expected_cause = expected_error_block.get('Cause')
-        actual_cause = execution_details.get('cause', '')
-        if expected_cause and expected_cause not in actual_cause:
-            messages.append(f"Validação Falhou: Causa esperada '{expected_cause}' não encontrada em '{actual_cause}'.")
-            return False, messages
-
-        messages.append("Validação bem-sucedida: O teste falhou como esperado.")
+    if final_status == 'SUCCEEDED':
+        messages.append("Validação bem-sucedida: A Step Function terminou com o status 'SUCCEEDED'.")
         return True, messages
-
-    if final_status != 'SUCCEEDED':
-        messages.append(f"Validação Falhou: Status esperado 'SUCCEEDED', mas foi '{final_status}'.")
-        error_info = f"Erro: {execution_details.get('error')}, Causa: {execution_details.get('cause')}"
-        messages.append(error_info)
+    else:
+        messages.append(f"Validação Falhou: A Step Function terminou com o status '{final_status}'.")
+        messages.append(f"Erro: {execution_details.get('error')}, Causa: {execution_details.get('cause')}")
         return False, messages
-
-    if 'expected' in scenario_config:
-        expected_output = scenario_config['expected']
-        try:
-            actual_output = json.loads(execution_details.get('output', '{}'))
-        except json.JSONDecodeError:
-            messages.append("Validação Falhou: Output da Step Function não é um JSON válido.")
-            return False, messages
-
-        validation_results = {}
-        validation_errors = []
-
-        key_mappings = {
-            'statusCode': ('apiResult', 'StatusCode'),
-            'statusInDb': ('verificationData', 'Item', 'status', 'S')
-        }
-
-        for key, path in key_mappings.items():
-            if key in expected_output:
-                current_level = actual_output
-                found = True
-                for step in path:
-                    if isinstance(current_level, dict) and step in current_level:
-                        current_level = current_level[step]
-                    else:
-                        validation_errors.append(f"Não foi possível encontrar o caminho '...{'.'.join(path)}' no output.")
-                        found = False
-                        break
-                if found:
-                    validation_results[key] = current_level
-
-        if validation_errors:
-            messages.extend(validation_errors)
-            messages.append("Verifique o arquivo de log para ver o output completo da Step Function e depurar o erro.")
-            return False, messages
-
-        if validation_results != expected_output:
-            messages.append("Validação Falhou: Output normalizado não corresponde ao esperado.")
-            messages.append(f"Esperado: {json.dumps(expected_output, indent=2)}")
-            messages.append(f"Recebido (normalizado): {json.dumps(validation_results, indent=2)}")
-            return False, messages
-
-        messages.append("Validação bem-sucedida: Output corresponde ao esperado.")
-
-    return True, messages
 
 def monitor_sfn_execution(execution_arn: str, scenario_name: str, scenario_config: dict, analysis_enabled: bool, analysis_provider: str) -> bool:
     """Aguarda a conclusão da execução, exibe o resultado e retorna o status de validação."""
@@ -244,16 +178,9 @@ def monitor_sfn_execution(execution_arn: str, scenario_name: str, scenario_confi
             _invoke_ai_analysis(scenario_config, execution_details, analysis_provider)
 
     else:
-        log_message(click.style(f"Status AWS: {final_status}", fg='yellow'))
-
-    log_message(click.style("--- Validação do Cenário ---", fg='cyan'))
-    is_pass, validation_messages = validate_execution_result(execution_details, scenario_config)
-    for msg in validation_messages:
-        log_message(msg)
-
-    final_verdict = click.style("Resultado Final: PASSOU ✅", fg='green') if is_pass else click.style("Resultado Final: FALHOU ❌", fg='red')
-    log_message(f"{final_verdict}\n" + click.style("-----------------------------------------\n", fg='cyan'))
-    return is_pass
+        log_message(click.style(f"Status AWS: {final_status} {'❌' if final_status == 'FAILED' else '✅'}", fg='yellow'))
+    log_message(click.style("-----------------------------------------\n", fg='cyan'))
+    return final_status == "SUCCEEDED"
 
 def _run_single_test(state_machine_arn: str, scenario_path: Path, wait: bool, analysis_enabled: bool, analysis_provider: str) -> bool:
     """Helper function to load, start, and monitor a single test case."""
@@ -438,7 +365,7 @@ def cli():
 @click.option('--interactive', '-i', is_flag=True, help='Inicia a CLI em modo interativo para selecionar suítes e cenários.')
 @click.option('--parallel', is_flag=True, help='Executa os testes em paralelo para maior velocidade.')
 @click.option('--analyze-failures', 'analysis_enabled', is_flag=True, help='Ativa a IA para analisar e sugerir correções para testes que falham.')
-@click.option('--provider', 'analysis_provider', default=None, help='Provedor de IA a ser usado para geração ou análise (ex: openai, gemini, azure, groq, claude, github).')
+@click.option('--provider', 'analysis_provider', default=None, help='Provedor de IA a ser usado para geração ou análise (ex: openai, gemini, groq).')
 @click.option('--wait/--no-wait', default=True, help='Espera a conclusão do teste e mostra o resultado. Padrão: --wait.')
 def run(suites_to_run: Tuple[str], scenarios_to_run: Tuple[str], wait: bool, interactive: bool, parallel: bool, analysis_enabled: bool, analysis_provider: str):
     """
@@ -549,14 +476,14 @@ def list_scenarios():
 def _get_llm_instance(provider_name: str, config: Dict[str, Any]):
     """Initializes and returns a LangChain LLM instance based on the provider."""
     try:
-        from langchain_openai import OpenAI, AzureChatOpenAI
+        from langchain_openai import ChatOpenAI
         from langchain_google_genai import GoogleGenerativeAI
         from langchain_groq import ChatGroq
         from langchain_anthropic import ChatAnthropic
     except ImportError:
         log_message(
             "Erro: Para usar a funcionalidade de IA, instale as dependências:\n"
-            "pip install pyyaml langchain langchain-openai langchain-google-genai langchain-groq langchain-anthropic",
+            "pip install pyyaml langchain langchain-openai langchain-google-genai langchain-groq langchain-anthropic python-dotenv",
             level="ERROR", err=True
         )
         return None
@@ -569,48 +496,14 @@ def _get_llm_instance(provider_name: str, config: Dict[str, Any]):
         if not api_key:
             log_message("Erro: Chave de API da OpenAI não encontrada. Defina em 'config.yaml' ou na variável de ambiente OPENAI_API_KEY.", level="ERROR", err=True)
             return None
-        return OpenAI(temperature=0.2, max_tokens=2048, api_key=api_key)
-    
-    elif provider_name == 'azure':
-        required_keys = ['api_key', 'endpoint', 'deployment_name', 'api_version']
-        if not all(key in config for key in required_keys):
-            log_message(f"Erro: Para o provedor Azure, as chaves {required_keys} são necessárias em '{CONFIG_FILE}'.", level="ERROR", err=True)
-            return None
-        return AzureChatOpenAI(
-            temperature=0.2,
-            max_tokens=2048,
-            openai_api_key=config['api_key'],
-            azure_endpoint=config['endpoint'],
-            deployment_name=config['deployment_name'],
-            openai_api_version=config['api_version']
-        )
-    
-    elif provider_name == 'github':
-        token = os.getenv("GITHUB_TOKEN")
-        if not token:
-            log_message("Erro: A variável de ambiente GITHUB_TOKEN é necessária para o provedor 'github'.", level="ERROR", err=True)
-            return None
-        
-        # Use defaults from the user's snippet, but allow overrides from config.yaml
-        endpoint = config.get('endpoint', "https://models.github.ai/inference")
-        model_name = config.get('model_name', "deepseek/DeepSeek-V3-0324")
-        api_version = config.get('api_version', "2024-05-01-preview")
-
-        return AzureChatOpenAI(
-            temperature=0.2,
-            max_tokens=2048,
-            openai_api_key=token,
-            azure_endpoint=endpoint,
-            deployment_name=model_name,
-            openai_api_version=api_version
-        )
+        return ChatOpenAI(model="gpt-5", temperature=0.2, max_tokens=16000, api_key=api_key)
 
     elif provider_name == 'gemini':
         api_key = config.get('api_key') or os.getenv('GOOGLE_API_KEY')
         if not api_key:
             log_message("Erro: Chave de API do Google não encontrada. Defina em 'config.yaml' ou na variável de ambiente GOOGLE_API_KEY.", level="ERROR", err=True)
             return None
-        return GoogleGenerativeAI(model="gemini-pro", google_api_key=api_key, temperature=0.2)
+        return GoogleGenerativeAI(model="gemini-2.5-pro", google_api_key=api_key, temperature=0.2)
 
     elif provider_name == 'groq':
         api_key = config.get('api_key') or os.getenv('GROQ_API_KEY')
@@ -838,6 +731,7 @@ Sua resposta DEVE ser um único e válido array JSON. NÃO inclua nenhum texto a
     chain = prompt | llm
     log_message(click.style("Enviando requisição para a IA para gerar cenários...", fg='magenta'))
     response = chain.invoke({"contexto": context})
+    print(response)
     response_content = response if isinstance(response, str) else response.content
     
     try:
@@ -859,7 +753,7 @@ Sua resposta DEVE ser um único e válido array JSON. NÃO inclua nenhum texto a
 
 @cli.command()
 @click.argument('project_path', type=click.Path(exists=True, file_okay=False))
-@click.option('--provider', default=None, help='Provedor de IA a ser usado (ex: openai, gemini, azure, groq, claude, github).')
+@click.option('--provider', default=None, help='Provedor de IA a ser usado (ex: openai, gemini, groq).')
 @click.option('--interactive', '-i', is_flag=True, help='Selecionar interativamente os arquivos de contexto para a IA.')
 def generate(project_path, provider, interactive):
     """

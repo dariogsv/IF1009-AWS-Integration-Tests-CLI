@@ -1,0 +1,20 @@
+{
+  "description": "Cenário 8: Tenta registrar um pedido com um método de pagamento inválido, esperando erro de validação 400.",
+  "input": {
+    "input": {
+      "items": {
+        "item-001": {
+          "nome": "Produto Válido",
+          "preco_unitario": 1000,
+          "quantidade": 1
+        }
+      },
+      "clienteId": "cliente-existente-123",
+      "enderecoEntrega": "Rua dos Pagamentos, 1",
+      "paymentMethod": "BOLETO"
+    },
+    "expected": {
+      "statusCode": 400
+    }
+  }
+}

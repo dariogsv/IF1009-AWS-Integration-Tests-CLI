@@ -1,7 +1,13 @@
 {
-  "description": "Cenário de borda com um dicionário de itens vazio. A validação atual permite isso.",
+  "description": "Cliente inválido",
   "input": {
-    "items": {},
+    "items": {
+      "prod-000": {
+        "nome": "Produto Vazio",
+        "preco_unitario": 100,
+        "quantidade": 1
+      }
+    },
     "clienteId": "cliente-d6e0-523a-7700",
     "enderecoEntrega": "Praça do Pedido Vazio, s/n",
     "paymentMethod": "PIX"

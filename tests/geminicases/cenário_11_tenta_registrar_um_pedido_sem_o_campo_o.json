@@ -1,0 +1,19 @@
+{
+  "description": "Cenário 11: Tenta registrar um pedido sem o campo obrigatório 'enderecoEntrega', esperando erro 400.",
+  "input": {
+    "input": {
+      "items": {
+        "item-001": {
+          "nome": "Produto Válido",
+          "preco_unitario": 1000,
+          "quantidade": 1
+        }
+      },
+      "clienteId": "cliente-existente-123",
+      "paymentMethod": "PIX"
+    },
+    "expected": {
+      "statusCode": 400
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Cenário 4: Tenta registrar um pedido para um clienteId que não existe, esperando erro 400.",
+  "input": {
+    "input": {
+      "items": {
+        "item-001": {
+          "nome": "Produto Fantasma",
+          "preco_unitario": 1000,
+          "quantidade": 1
+        }
+      },
+      "clienteId": "cliente-inexistente-456",
+      "enderecoEntrega": "Rua do Limbo, 0",
+      "paymentMethod": "PIX"
+    },
+    "expected": {
+      "statusCode": 400
+    }
+  }
+}

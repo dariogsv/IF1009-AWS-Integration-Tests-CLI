@@ -1,0 +1,18 @@
+{
+  "description": "paymentMethod com case incorreto (pix) deve falhar na validação (400)",
+  "input": {
+    "items": {
+      "SKU-001": {
+        "nome": "Produto A",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "1",
+    "enderecoEntrega": "Rua D, 40",
+    "paymentMethod": "pix"
+  },
+  "expected": {
+    "statusCode": 400
+  }
+}

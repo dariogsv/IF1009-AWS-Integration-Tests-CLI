@@ -1,0 +1,12 @@
+{
+  "description": "Items vazio (dicionário sem itens) — validação Pydantic passa, mas deve falhar com 502 no backend ao checar cliente",
+  "input": {
+    "items": {},
+    "clienteId": "1",
+    "enderecoEntrega": "Rua F, 60",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 502
+  }
+}

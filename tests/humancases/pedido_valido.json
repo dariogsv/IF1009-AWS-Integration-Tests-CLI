@@ -1,0 +1,19 @@
+{
+  "description": "Pedido válido",
+  "input": {
+    "items": {
+      "prod-000": {
+        "nome": "Produto Vazio",
+        "preco_unitario": 100,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "1",
+    "enderecoEntrega": "Praça do Pedido Vazio, s/n",
+    "paymentMethod": "PIX"
+  },
+  "expected": {
+    "statusCode": 200,
+    "statusInDb": "PENDENTE"
+  }
+}

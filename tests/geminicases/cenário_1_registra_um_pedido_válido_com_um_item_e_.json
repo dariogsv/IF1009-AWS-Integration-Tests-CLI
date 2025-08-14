@@ -1,0 +1,21 @@
+{
+  "description": "Cenário 1: Registra um pedido válido com um item e método de pagamento CARTAO_CREDITO.",
+  "input": {
+    "input": {
+      "items": {
+        "item-001": {
+          "nome": "Pydantic para Iniciantes",
+          "preco_unitario": 5000,
+          "quantidade": 1
+        }
+      },
+      "clienteId": "cliente-existente-123",
+      "enderecoEntrega": "Rua dos Validadores, 123, São Paulo, SP",
+      "paymentMethod": "CARTAO_CREDITO"
+    },
+    "expected": {
+      "statusCode": 200,
+      "dbStatus": "PENDENTE"
+    }
+  }
+}

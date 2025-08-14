@@ -24,8 +24,8 @@
                     "ErrorEquals": [
                         "States.ALL"
                     ],
-                    "Next": "TestFailed",
-                    "ResultPath": "$.error"
+                    "Next": "ConstructExpectedErrorString",
+                    "ResultPath": "$.apiResult"
                 }
             ]
         },
@@ -37,6 +37,27 @@
                     "Variable": "$.apiResult.StatusCode",
                     "NumericEqualsPath": "$.expected.statusCode",
                     "Next": "IsSuccessCase"
+                }
+            ],
+            "Default": "Construct_WrongStatusCode_Cause"
+        },
+        "ConstructExpectedErrorString": {
+            "Type": "Pass",
+            "Comment": "Cria a string de erro HTTP esperada para comparação.",
+            "Parameters": {
+                "ExpectedErrorString.$": "States.Format('States.Http.StatusCode.{}', $.expected.statusCode)"
+            },
+            "ResultPath": "$.expected",
+            "Next": "CheckStatusCodeFail"
+        },
+        "CheckStatusCodeFail": {
+            "Type": "Choice",
+            "Comment": "Verifica se o erro HTTP capturado era o esperado.",
+            "Choices": [
+                {
+                    "Variable": "$.apiResult.Error",
+                    "StringEqualsPath": "$.expected.ExpectedErrorString",
+                    "Next": "TestPassed"
                 }
             ],
             "Default": "Fail_WrongStatusCode"
@@ -125,6 +146,15 @@
         },
         "TestPassed": {
             "Type": "Succeed"
+        },
+        "Construct_WrongStatusCode_Cause": {
+            "Type": "Pass",
+            "Comment": "Constrói a mensagem de erro para status code incorreto.",
+            "Parameters": {
+                "causeString.$": "States.Format('API status code validation failed. Expected: {}, Got: {}', $.expected.statusCode, $.apiResult.StatusCode)"
+            },
+            "ResultPath": "$.errorDetails",
+            "Next": "Fail_WrongStatusCode"
         },
         "Fail_WrongStatusCode": {
             "Type": "Fail",

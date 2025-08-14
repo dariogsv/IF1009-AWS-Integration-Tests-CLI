@@ -6,6 +6,7 @@ import boto3
 import traceback
 from datetime import datetime
 from typing import Dict, Literal, List
+from boto3.dynamodb.conditions import Key
 from pydantic import BaseModel, ValidationError, Field
 
 DYNAMODB_TABLE_NAME = os.environ.get("PEDIDOS_TABLE_NAME")
@@ -46,6 +47,17 @@ def lambda_handler(event, context):
 
         itens_resumo = ", ".join([f"{item.quantidade}x {item.nome}" for item_id, item in pedido_validado.items.items()])
         print(f"Pedido {pedido_id} contendo [{itens_resumo}] recebido. Status: {status_pedido} em {current_timestamp}")
+        
+        # Verifica se o cliente existe
+        client = table.query(
+            KeyConditionExpression=Key('pedidoId').eq(pedido_validado.clienteId)
+        )
+        if not client.get('Items'):
+            print(f"Cliente {pedido_validado.clienteId} não encontrado.")
+            return {
+                'statusCode': 400,
+                'body': json.dumps({'message': 'Cliente não encontrado.'})
+            }
 
         # 2. Monta o item para o DynamoDB a partir do modelo validado
         dynamo_order = {

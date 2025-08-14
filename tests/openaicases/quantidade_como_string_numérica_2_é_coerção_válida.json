@@ -1,0 +1,18 @@
+{
+  "description": "Quantidade como string numérica (\"2\") é coerção válida, mas deve falhar com 502 na checagem de cliente",
+  "input": {
+    "items": {
+      "SKU-COER": {
+        "nome": "Produto Coercao",
+        "preco_unitario": 1200,
+        "quantidade": "2"
+      }
+    },
+    "clienteId": "1",
+    "enderecoEntrega": "Rua K, 110",
+    "paymentMethod": "CARTAO_CREDITO"
+  },
+  "expected": {
+    "statusCode": 502
+  }
+}

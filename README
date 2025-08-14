@@ -1,0 +1,32 @@
+# Setup
+
+## Arquivos de configuração
+
+É preciso criar dois arquivos de configuração:
+
+### config.yaml
+```yaml
+# Define qual provedor usar se nenhum for especificado com a flag --provider
+default_provider: openai
+
+providers:
+  # Configuração para a API da OpenAI
+  openai:
+    # A chave pode ser colocada aqui ou lida da variável de ambiente OPENAI_API_KEY
+    api_key: "sk-proj-xxxxxxxxxxx"
+
+  # Configuração para a API do Google Gemini
+  gemini:
+    # A chave pode ser obtida no Google AI Studio e lida da variável de ambiente GOOGLE_API_KEY
+    api_key: "xxxxxxxxxxx"
+  
+  groq:
+    api_key: "gsk_xxxxxxxxxx"
+
+  # Configuração para a API do Azure OpenAI
+  azure:
+    api_key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    endpoint: "https://seu-recurso.openai.azure.com/"
+    deployment_name: "seu-deployment-name" # O nome do seu modelo/deployment no Azure
+    api_version: "2023-07-01-preview"
+```

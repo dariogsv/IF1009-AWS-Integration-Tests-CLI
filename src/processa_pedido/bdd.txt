@@ -1,0 +1,25 @@
+BDD Cards: Funcionalidade de Processamento de Pedidos
+Feature: Registro de Novos Pedidos
+Para permitir que os clientes comprem produtos, o sistema deve ser capaz de receber, validar e registrar novos pedidos de forma confiável.
+clientID válido: "1"
+
+Cenário 1: Registro de um pedido válido com cartão de crédito
+Dado que o cliente está autenticado e o corpo da requisição é um JSON válido
+E contém um clienteId, enderecoEntrega, e um paymentMethod como 'CARTAO_CREDITO'
+E a lista de items contém um item com nome, preco_unitario maior que zero e quantidade maior que zero
+Quando a API de processamento de pedidos é chamada
+Então o sistema deve retornar um status 200 OK
+E o pedido deve ser salvo no banco de dados com o status "PENDENTE"
+E o corpo da resposta deve conter o pedidoId gerado.
+
+Cenário 2: Tentativa de registrar um pedido com quantidade inválida
+Dado que o cliente está autenticado e o corpo da requisição é um JSON válido
+E a lista de items contém um item com quantidade igual a 0
+Quando a API de processamento de pedidos é chamada
+Então o sistema deve retornar um erro de validação com status 400 Bad Request
+
+Cenário 3: Tentativa de criar um pedido de cliente inexistente
+Dado que um usuário anônimo (sem um clientID válido) tenta fazer uma requisição
+Quando a API de processamento de pedidos é chamada com um corpo de requisição válido
+Então o sistema deve retornar um erro de autorização com status 401 Unauthorized
+E o pedido não deve ser salvo no banco de dados.

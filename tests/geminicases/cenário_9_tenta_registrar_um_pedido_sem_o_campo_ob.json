@@ -1,0 +1,13 @@
+{
+  "description": "Cenário 9: Tenta registrar um pedido sem o campo obrigatório 'items', esperando erro 400.",
+  "input": {
+    "input": {
+      "clienteId": "cliente-existente-123",
+      "enderecoEntrega": "Rua dos Campos Ausentes, 1",
+      "paymentMethod": "PIX"
+    },
+    "expected": {
+      "statusCode": 400
+    }
+  }
+}

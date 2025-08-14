@@ -1,0 +1,18 @@
+{
+  "description": "paymentMethod inválido (DINHEIRO) deve falhar na validação (400)",
+  "input": {
+    "items": {
+      "SKU-001": {
+        "nome": "Produto A",
+        "preco_unitario": 1000,
+        "quantidade": 1
+      }
+    },
+    "clienteId": "1",
+    "enderecoEntrega": "Rua C, 30",
+    "paymentMethod": "DINHEIRO"
+  },
+  "expected": {
+    "statusCode": 400
+  }
+}
