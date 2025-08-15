@@ -1,4 +1,4 @@
-# CLI de Testes E2E para AWS Step Functions com IA
+# CLI de Testes E2E com orquestração AWS Step Functions e IA na geração de cenários para sistemas na AWS
 
 Esta ferramenta é uma Command-Line Interface (CLI) projetada para simplificar e acelerar o processo de testes End-to-End (E2E) orquestrados com AWS Step Functions para sistemas em microsserviços AWS.
 
