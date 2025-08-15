@@ -23,3 +23,6 @@ layers/*/python/
 # Configurações
 config.yaml
 .env
+
+# Logs
+cli_debug.log
