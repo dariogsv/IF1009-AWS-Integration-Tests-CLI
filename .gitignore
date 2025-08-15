@@ -17,5 +17,9 @@ pip-wheel-metadata/
 # Ignora pastas de dependências de layers
 layers/*/python/
 
+# IDEs
+.vscode/
+
+# Configurações
 config.yaml
 .env
